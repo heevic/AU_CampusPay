@@ -23,13 +23,8 @@ export default async function Home() {
 
     return (
     <main className={styles.main}>
-      <h2>임시 페이지</h2>
-      <div>로그인 페이지 : <Link href={'/login'}>로그인</Link></div>
-      <div>로그인 페이지 : <Link href={'http://localhost:3000/api/auth/signin/github'}>깃허브로그인</Link></div>
-      <div>로그아웃 : <Link href={'http://localhost:3000/api/auth/signout/github'}>로그아웃</Link></div>
-      <div>어드민 페이지 : <Link href={'/'}>어드민</Link></div>
-      <div>결제 페이지 : <Link href={'/'}>결제</Link></div>
-      <div>QR 출력 페이지 : <Link href={'/'}>QR Code</Link></div>
+
+        <h2>세션 정보</h2>
         <p>
             아이디 : test<br/>
             비밀번호 : test<br/>
@@ -37,11 +32,13 @@ export default async function Home() {
         </p>
         <>
             {session ? (
-                <div>{session?.user?.name}</div>
+                <div>session : {session?.user?.name}</div>
             ) : (
-                <div>session null</div>
+                <div>session : null</div>
             )}
         </>
+        <h2>QR 예시</h2>
+        <div><Link href={'/qrtest'}>QR Home</Link></div>
     </main>
   )
 }
