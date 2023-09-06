@@ -30,6 +30,11 @@ export default async function Home() {
       <div>어드민 페이지 : <Link href={'/'}>어드민</Link></div>
       <div>결제 페이지 : <Link href={'/'}>결제</Link></div>
       <div>QR 출력 페이지 : <Link href={'/'}>QR Code</Link></div>
+        <p>
+            아이디 : test<br/>
+            비밀번호 : test<br/>
+            공급자 : 깃허브
+        </p>
         <>
             {session ? (
                 <div>{session?.user?.name}</div>
