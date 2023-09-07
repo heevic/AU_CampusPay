@@ -16,7 +16,9 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <head ><title>AU App</title></head>
+        <head>
+            <title>AU App</title>
+        </head>
         <Script src="https://cdn.iamport.kr/v1/iamport.js" />
         <body className={inter.className}>
         <AuthProvider>

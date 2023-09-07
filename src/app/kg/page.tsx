@@ -6,6 +6,10 @@ const KgPayment = () => {
     const onClickPayment = () => {
         if (!window.IMP) return;
         /* 1. 가맹점 식별하기 */
+        if (!process.env.NEXT_PUBLIC_IAMPORT_IMP) {
+            throw new Error('NEXT_PUBLIC_IAMPORT_IMP is not defined');
+        }
+
         const { IMP } = window;
         IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP); // 가맹점 식별코드
 
@@ -23,14 +27,18 @@ const KgPayment = () => {
             buyer_postcode: "06018",                     // 구매자 우편번호
         };
 
-        /* 4. 결제 창 호출하기 */
+        /* 4. 결제 창 호출 */
         console.log('클릭함')
         IMP.request_pay(data, callback);
     };
 
-    /* 3. 콜백 함수 정의하기 */
+    /* 3. 콜백 함수 정의 : 결제 후 실행될 로직 */
     function callback(response: RequestPayResponse) {
-        const { success, error_msg } = response;
+        const {
+            success,
+            merchant_uid,
+            error_msg
+        } = response;
 
         if (success) {
             alert("결제 성공");

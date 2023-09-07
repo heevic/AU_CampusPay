@@ -149,7 +149,7 @@ export interface RequestPayParams extends RequestPayAdditionalParams {
      * @example
      * PG사코드.{상점ID}
      */
-    pg?: string;
+    pg?: string | undefined;
     /**
      * ### 결제수단 구분코드
      * - PG사별 지원되는 결제수단이 모두 상이합니다.
