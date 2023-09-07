@@ -1,14 +1,13 @@
 'use client'
 import React from 'react';
-import * as PortOne from '@portone/browser-sdk/v2';
-import {RequestPayParams, RequestPayResponse} from "@/app/types/portone";
+import {RequestPayParams, RequestPayResponse} from "@/types/portone";
 
 const KgPayment = () => {
     const onClickPayment = () => {
         if (!window.IMP) return;
         /* 1. 가맹점 식별하기 */
         const { IMP } = window;
-        IMP.init("imp58485762"); // 가맹점 식별코드
+        IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP); // 가맹점 식별코드
 
         /* 2. 결제 데이터 정의하기 */
         const data: RequestPayParams = {

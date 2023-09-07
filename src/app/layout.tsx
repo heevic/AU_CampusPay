@@ -3,8 +3,8 @@ import '../styles/globals.scss'
 import Link from "next/link";
 import {Inter} from 'next/font/google'
 import AuthProvider from "@/app/context/AuthProvider";
-import Script from "next/script";
 import type {Metadata} from 'next'
+import Script from "next/script";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="en">
+        <head ><title>AU App</title></head>
+        <Script src="https://cdn.iamport.kr/v1/iamport.js" />
         <body className={inter.className}>
         <AuthProvider>
             <h2>임시 페이지</h2>
@@ -26,6 +28,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <div>어드민 페이지 : <Link href={'/admin'}>어드민</Link></div>
             <div>결제 페이지 : <Link href={'/payment'}>페이팔</Link></div>
             <div>결제 페이지 : <Link href={'/kg'}>이니시스</Link></div>
+            <div>결제 페이지 : <Link href={'/v2'}>이니시스 V2</Link></div>
             <div>QR 출력 페이지 : <Link href={'/qrtest'}>QR Code</Link></div>
             {children}
         </AuthProvider>

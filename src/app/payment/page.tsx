@@ -1,6 +1,6 @@
 'use client'
 import { ChangeEventHandler, useEffect, useState } from "react";
-import { PaypalRequestPayParams, RequestPayResponse } from "@/portone";
+import { PaypalRequestPayParams, RequestPayResponse } from "@/types/portone";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
