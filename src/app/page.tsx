@@ -36,8 +36,6 @@ export default async function Home() {
                     <div>session : null</div>
                 )}
             </>
-            <h2>QR 예시</h2>
-            <div><Link href={'/qrtest'}>QR Home</Link></div>
         </div>
     </main>
   )
