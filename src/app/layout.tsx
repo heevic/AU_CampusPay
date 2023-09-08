@@ -40,13 +40,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                     <Link href={'/admin'} className='text-red-400 font-bold'>어드민</Link>
                 </div>
                 <div>결제 페이지 :
-                    <Link href={'/payment' } className='text-red-400 font-bold'>페이팔</Link>
-                </div>
-                <div>결제 페이지 :
-                    <Link href={'/kg'} className='text-red-400 font-bold'>이니시스</Link>
-                </div>
-                <div>결제 페이지 :
-                    <Link href={'/v2'} className='text-red-400 font-bold'>이니시스 V2</Link>
+                    <Link href={'/payment'} className='text-red-400 font-bold'>이니시스</Link>
                 </div>
                 <div>QR 출력 페이지 :
                     <Link href={'/qrtest'} className='text-red-400 font-bold'>QR Code</Link>

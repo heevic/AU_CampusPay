@@ -3,6 +3,7 @@ import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const options: NextAuthOptions = {
+    // 외부 공급자
     providers: [
         GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID as string,
@@ -22,11 +23,13 @@ export const options: NextAuthOptions = {
                     placeholder: 'pwd'
                 }
             },
+
+            // 사용자 지정 로그인
             async authorize(credentials) {
                 const user = {
-                    id: 'test',
-                    name: 'test',
-                    password: 'test'
+                    id: 'i0000001',
+                    name: 'root',
+                    password: 'welcome2ansan'
                 }
 
                 if (credentials?.username === user.name && credentials?.password === user.password) {

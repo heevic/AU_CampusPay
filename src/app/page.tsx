@@ -25,8 +25,8 @@ export default async function Home() {
         <div>
             <h2>세션 정보</h2>
             <p>
-                아이디 : test<br/>
-                비밀번호 : test<br/>
+                아이디 : root<br/>
+                비밀번호 : welcome2ansan<br/>
                 공급자 : 깃허브
             </p>
             <>
