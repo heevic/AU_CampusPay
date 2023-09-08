@@ -11,5 +11,6 @@
     <orderEntry type="library" name="iamport" level="application" />
     <orderEntry type="library" name="browser-sdk" level="application" />
     <orderEntry type="library" name="iamport" level="application" />
+    <orderEntry type="module" module-name="attack-web" />
   </component>
 </module>
