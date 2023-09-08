@@ -8,7 +8,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="attack-web" />
     <orderEntry type="library" name="iamport" level="application" />
   </component>
 </module>
