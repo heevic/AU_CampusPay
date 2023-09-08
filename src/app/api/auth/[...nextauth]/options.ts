@@ -3,14 +3,20 @@ import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const options: NextAuthOptions = {
-    // 외부 공급자
     providers: [
+        /** ### 깃허브 외부 공급자*/
         GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID as string,
             clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
         }),
+        /** ### 사용자 지정 아이디로 로그인*/
         CredentialsProvider({
+            id: "Credentials",
             name: "Credentials",
+            /**
+             * ### 사용자에게 보여질 입력 필드.
+             * - credentials : 사용자가 로그인 폼에서 입력한 이메일과 비밀번호
+             */
             credentials: {
                 username: {
                     label: "Username:",
@@ -23,8 +29,7 @@ export const options: NextAuthOptions = {
                     placeholder: 'pwd'
                 }
             },
-
-            // 사용자 지정 로그인
+            /** ### 자격증명을 이용한 사용자 인증 ( MongoDb ) */
             async authorize(credentials) {
                 const user = {
                     id: 'i0000001',

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {options} from "@/app/api/auth/[...nextauth]/option";
+import {options} from "@/app/api/auth/[...nextauth]/options";
 import {getServerSession} from "next-auth";
 import {undefined} from "zod";
 
