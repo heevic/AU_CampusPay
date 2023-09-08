@@ -43,6 +43,10 @@ export const options: NextAuthOptions = {
                     return null
                 }
             }
+
+            /** ### 세션 설정 */
+
+            /** ### 콜백 : JWT */
         })
     ],
 }
