@@ -2,7 +2,13 @@
 import React, { useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 
-const Page = () => {
+type Props = {
+    params: {
+        slug: string;
+    }
+}
+
+const ConfirmationPage = ({params}: Props) => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
@@ -17,10 +23,10 @@ const Page = () => {
     return (
         <div className="h-screen flex flex-col justify-center items-center bg-white">
             <canvas ref={canvasRef}></canvas>
-            <p className='text-center'>중식 n식권<br/>사용여부</p>
+            <p className='text-center'>중식 n식권<br/>사용여부<br/>{params.slug}</p>
             <button>취소요청</button>
         </div>
     );
 };
 
-export default Page;
+export default ConfirmationPage;

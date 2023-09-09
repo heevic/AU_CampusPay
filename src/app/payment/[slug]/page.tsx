@@ -2,7 +2,13 @@
 import React from 'react';
 import {RequestPayParams, RequestPayResponse} from "@/types/portone";
 
-const Payments = () => {
+type Props = {
+    params: {
+        slug: string;
+    }
+}
+
+const Payments = ({params}: Props) => {
     const paymentHandler = () => {
         if (!window.IMP) return;
 
@@ -64,6 +70,7 @@ const Payments = () => {
 
     return (
         <>
+            <div>{params.slug}</div>
             <button onClick={paymentHandler}>
                 결제하기
             </button>
