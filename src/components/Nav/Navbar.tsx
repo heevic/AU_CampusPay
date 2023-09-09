@@ -13,9 +13,9 @@ const TopNavbar = () => {
     return (
         <>
             {/** ### 네비게이션 메뉴 */}
-            <nav className='flex justify-between w-screen bg-blue-300 h-14'>
+            <nav className='flex justify-between items-center w-screen bg-blue-300 h-14'>
+               <div className='pl-10'><Link href='/'>메인(로고 자리)</Link></div>
                 <ul className='h-full flex justify-start items-center gap-3'>
-                    <li className='pl-10'><Link href='/'>메인(로고 자리)</Link></li>
                     <li><Link href='/login'>커스텀 로그인</Link></li>
                     <li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
                     <li><Link href='/api/auth/signout/github'>로그아웃</Link></li>
@@ -24,7 +24,9 @@ const TopNavbar = () => {
                     <li><Link href='/qrtest'>큐알코드</Link></li>
                 </ul>
                 {/** ### 모바일 대응 (임시) */}
-                <button onClick={handleNavClick} className='pr-10'><GiHamburgerMenu/></button>
+                <button onClick={handleNavClick} className='pr-10'>
+                    <GiHamburgerMenu/>
+                </button>
             </nav>
             {/** ### 모바일 대응 (임시) */}
             <div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
