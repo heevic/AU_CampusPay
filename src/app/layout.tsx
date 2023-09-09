@@ -5,6 +5,7 @@ import {Inter} from 'next/font/google'
 import AuthProvider from "@/app/context/AuthProvider";
 import type {Metadata} from 'next'
 import Script from "next/script";
+import Navbar from "@/components/Nav/Navbar";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -20,31 +21,11 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <title>AU App</title>
         </head>
         <Script src="https://cdn.iamport.kr/v1/iamport.js"/>
-        <body className={inter.className}>
+        <body>
         <AuthProvider>
-            <div className='mx-auto w-1/2 p-4'>
+            <div>
+                <Navbar/>
                 <h2 className='text-2xl font-bold'>임시 페이지</h2>
-                <div>메인 페이지 :
-                    <Link href={'/'} className='text-red-400 font-bold'>메인</Link>
-                </div>
-                <div>로그인 페이지 :
-                    <Link href={'/login'} className='text-red-400 font-bold'>로그인</Link>
-                </div>
-                <div>로그인 페이지 :
-                    <Link href={'http://localhost:3000/api/auth/signin/github'} className='text-red-400 font-bold'>깃허브로그인</Link>
-                </div>
-                <div>로그아웃 :
-                    <Link href={'http://localhost:3000/api/auth/signout/github'} className='text-red-400 font-bold'>로그아웃</Link>
-                </div>
-                <div>어드민 페이지 :
-                    <Link href={'/admin'} className='text-red-400 font-bold'>어드민</Link>
-                </div>
-                <div>결제 페이지 :
-                    <Link href={'/payment'} className='text-red-400 font-bold'>이니시스</Link>
-                </div>
-                <div>QR 출력 페이지 :
-                    <Link href={'/qrtest'} className='text-red-400 font-bold'>QR Code</Link>
-                </div>
             </div>
             {children}
         </AuthProvider>
