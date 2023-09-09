@@ -1,12 +1,15 @@
 import React from "react";
 import '@/app/globals.css';
-import {Inter} from 'next/font/google'
 import AuthProvider from "@/app/context/AuthProvider";
 import type {Metadata} from 'next'
 import Script from "next/script";
 import TopNavbar from "@/components/Nav/Navbar";
+import { Gothic_A1 } from "next/font/google";
 
-const inter = Inter({subsets: ['latin']})
+const gothic = Gothic_A1({
+    weight: '500',
+    subsets: ['latin']
+})
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -20,12 +23,9 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <title>AU App</title>
         </head>
         <Script src="https://cdn.iamport.kr/v1/iamport.js"/>
-        <body>
+        <body  className={gothic.className}>
         <AuthProvider>
-            <div>
-                <TopNavbar/>
-                <h2 className='text-2xl font-bold'>임시 페이지</h2>
-            </div>
+            <TopNavbar/>
             {children}
         </AuthProvider>
         </body>
