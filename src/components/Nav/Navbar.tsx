@@ -16,12 +16,12 @@ const TopNavbar = () => {
             <nav className='flex justify-between items-center w-screen bg-blue-300 h-14'>
                <div className='pl-10'><Link href='/'>메인(로고 자리)</Link></div>
                 <ul className='h-full flex justify-start items-center gap-3 max-xmd:hidden'>
-                    <li><Link href='/login'>커스텀 로그인</Link></li>
-                    <li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
-                    <li><Link href='/api/auth/signout/github'>로그아웃</Link></li>
                     <li><Link href='/admin'>어드민</Link></li>
                     <li><Link href='/payment/username'>이니시스</Link></li>
-                    <li className='xl: pr-10'><Link href='/confiramation/username'>큐알코드</Link></li>
+                    <li><Link href='/confiramation/username'>큐알코드</Link></li>
+                    <li><Link href='/login'>커스텀 로그인</Link></li>
+                    <li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
+                    <li className='xl: pr-10'><Link href='/api/auth/signout/github'>로그아웃</Link></li>
                 </ul>
                 {/** ### 모바일 대응 (임시) */}
                 <button onClick={handleNavClick} className='pr-10 xmd:hidden max-xmd:block xl:hidden '>
@@ -34,14 +34,14 @@ const TopNavbar = () => {
                     <li className='pl-10'><Link href='/'>메인</Link></li>
                     <li className='pr-10'><button onClick={handleNavClick}><AiOutlineClose/></button></li>
                 </ul>
-                <ul>
-                    <li><Link href='/'>메인</Link></li>
-                    <li><Link href='/login'>커스텀 로그인</Link></li>
-                    <li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
-                    <li><Link href='/api/auth/signout/github'>로그아웃</Link></li>
-                    <li><Link href='/admin'>어드민</Link></li>
-                    <li><Link href='/payment'>이니시스</Link></li>
-                    <li><Link href='/qrtest'>큐알코드</Link></li>
+                <ul className='pr-10 pl-10 text-lg'>
+                    <li className='pb-1.5'><Link href='/login'>커스텀 로그인</Link></li>
+                    <li className='pb-1.5'><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
+                    <li className='pb-1.5'><Link href='/admin'>어드민</Link></li>
+                    <li className='pb-1.5'><Link href='/payment'>이니시스</Link></li>
+                    <li className='pb-1.5'><Link href='/qrtest'>큐알코드</Link></li>
+                    {/** TODO: Feature 정해진 후 배열에 담아 map 반복 */}
+                    <li className='pb-1.5 last:pb-0'><Link href='/api/auth/signout/github'>로그아웃</Link></li>
                 </ul>
             </div>
         </>

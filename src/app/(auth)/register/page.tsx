@@ -1,11 +1,11 @@
 import React from 'react';
 
-const SubMenu = () => {
+const Page = () => {
     return (
         <div>
-            
+            Register
         </div>
     );
 };
 
-export default SubMenu;
+export default Page;
