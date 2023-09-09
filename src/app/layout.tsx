@@ -1,11 +1,10 @@
 import React from "react";
 import '@/app/globals.css';
-import Link from "next/link";
 import {Inter} from 'next/font/google'
 import AuthProvider from "@/app/context/AuthProvider";
 import type {Metadata} from 'next'
 import Script from "next/script";
-import Navbar from "@/components/Nav/Navbar";
+import TopNavbar from "@/components/Nav/Navbar";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -24,7 +23,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <body>
         <AuthProvider>
             <div>
-                <Navbar/>
+                <TopNavbar/>
                 <h2 className='text-2xl font-bold'>임시 페이지</h2>
             </div>
             {children}
