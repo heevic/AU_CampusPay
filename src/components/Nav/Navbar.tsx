@@ -23,6 +23,7 @@ const TopNavbar = () => {
                     <li><Link href='/payment'>이니시스</Link></li>
                     <li><Link href='/qrtest'>큐알코드</Link></li>
                 </ul>
+                {/** ### 모바일 대응 (임시) */}
                 <button onClick={handleNavClick} className='pr-10'><GiHamburgerMenu/></button>
             </nav>
             {/** ### 모바일 대응 (임시) */}
