@@ -7,11 +7,13 @@ import React from "react";
 import {BsQrCode} from "react-icons/bs";
 import {MdPayment} from "react-icons/md";
 import {AiOutlineHistory} from "react-icons/ai";
+import {GrUserAdmin} from "react-icons/gr";
 
 type User = {
     name?: string | null | undefined;
     email?: string | null | undefined;
-    image?: string | null | undefined
+    image?: string | null | undefined;
+    role? : string | null | undefined;
 } | undefined;
 
 type Session = {
@@ -28,7 +30,9 @@ export default async function Home() {
     return (
     <main className='w-screen h-screen bg-gray-200'>
         <div className='grid grid-cols-2 gap-4'>
+            {/** ### TapMenu Component */}
             <TapMenu/>
+            {/** ### User Profile */}
             <div className='ml-5 p-5 bg-white'>
                 <h2>세션 정보</h2>
                 <p>
@@ -44,20 +48,28 @@ export default async function Home() {
                     )}
                 </>
             </div>
+            {/** ### Link */}
             <div className='mr-5 p-5 bg-white flex flex-col gap-4'>
-                <Link href={'/'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                <Link href={'/confirmation/username'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                     <BsQrCode/>
                     <span>식권 사용</span>
                 </Link>
-                <Link href={'/'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                <Link href={'/payment/username'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                     <MdPayment/>
                     <span>식권 구입</span>
                 </Link>
-                <Link href={'/'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                <Link href={'/profile/username'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                     <AiOutlineHistory/>
                     <span>결제 내역</span>
                 </Link>
+                {session?.user?.name === 'root' &&
+                    <Link href={'/admin'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                        <GrUserAdmin/>
+                        <span>관리자 페이지</span>
+                    </Link>
+                }
             </div>
+            {/** ### AnnounceManet */}
             <div className='ml-5 mr-5 p-5 bg-white col-span-2'>Announce</div>
         </div>
     </main>

@@ -31,11 +31,12 @@ export const options: NextAuthOptions = {
             },
             /** ### 자격증명을 이용한 사용자 인증 ( MongoDb ) */
             async authorize(credentials) {
-                /** 테스트계정 몽고디비 연결 필요 */
+                /** 테스트 관리자 계정 몽고디비 연결 필요 */
                 const user = {
                     id: 'i0000001',
                     name: 'root',
-                    password: 'welcome2ansan'
+                    password: 'welcome2ansan',
+                    role: 'admin'
                 }
 
                 if (credentials?.username === user.name && credentials?.password === user.password) {
