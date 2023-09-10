@@ -82,8 +82,8 @@ export const options: NextAuthOptions = {
     },
     /** ### 경로 */
     pages: {
-        signIn: '/login',
-        signOut: '/join',
+        //signIn: '/login',
+        //signOut: '/login',
     },
     /** ### 어댑터 & 시크릿키 */
     //adapter: MongoDBAdapter(connectDB),
