@@ -2,6 +2,7 @@ import Link from "next/link";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {getServerSession} from "next-auth";
 import {undefined} from "zod";
+import TapMenu from "@/components/TapMenu/TapMenu";
 
 type User = {
     name?: string | null | undefined;
@@ -21,21 +22,26 @@ export default async function Home() {
   const session: Session | null = await getServerSession(options)
 
     return (
-    <main className='mx-auto w-1/2 p-4'>
-        <div>
-            <h2>세션 정보</h2>
-            <p>
-                아이디 : root<br/>
-                비밀번호 : welcome2ansan<br/>
-                공급자 : 깃허브
-            </p>
-            <>
-                {session ? (
-                    <div>session : {session?.user?.name}</div>
-                ) : (
-                    <div>session : null</div>
-                )}
-            </>
+    <main className='w-screen h-screen bg-gray-200'>
+        <div className='grid grid-cols-2 gap-4'>
+            <TapMenu/>
+            <div className='bg-white'>
+                <h2>세션 정보</h2>
+                <p>
+                    아이디 : root<br/>
+                    비밀번호 : welcome2ansan<br/>
+                    공급자 : 깃허브
+                </p>
+                <>
+                    {session ? (
+                        <div>session : {session?.user?.name}</div>
+                    ) : (
+                        <div>session : null</div>
+                    )}
+                </>
+            </div>
+            <div className='bg-white'>Move Menu</div>
+            <div className='bg-white col-span-2'>Announce</div>
         </div>
     </main>
   )
