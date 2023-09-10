@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import {connectDB} from "@/app/api/db/mongoDb";
 import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from "next-auth/providers/credentials";
+import {ObjectId} from "bson";
 
 export const options: NextAuthOptions = {
     providers: [
@@ -33,18 +34,39 @@ export const options: NextAuthOptions = {
             },
             /** ### 자격증명을 이용한 사용자 인증 ( MongoDb ) */
             async authorize(credentials) {
-                /** 테스트 관리자 계정 몽고디비 연결 필요 */
-                const user = {
-                    id: 'i0000001',
-                    name: 'root',
-                    password: 'welcome2ansan',
-                    role: 'admin'
-                }
+                try {
+                    if (!credentials || !credentials.email || !credentials.password) {
+                        throw new Error("No credentials provided");
+                    }
+                    /** 테스트 관리자 계정 몽고디비 연결 필요 */
+                    /*const user = {
+                        id: 'i0000001',
+                        name: 'root',
+                        password: 'welcome2ansan',
+                        role: 'admin'
+                    }*/
+                    /** ###  MongoDB 접근 */
+                    let db = (await connectDB).db(process.env.MONGODB_NAME);
+                    /**
+                     * ### 자격증명이 없는 경우
+                     * (credentials: null || undefined 또는 객체에 email, password 속성이 없는 경우)
+                     */
+                    if (!credentials) throw new Error("No credentials provided");
+                    let user = await db.collection('user').findOne({
+                        email: credentials.email
+                    });
+                    if (!user) throw new Error("User not found");
+                    /** ### 일반 사용자(customer) 계정의 비밀번호 검증 */
+                    const isPasswordValid: boolean = await bcrypt.compare(credentials.password, user.password);
+                    if (!isPasswordValid) throw new Error("Invalid password");
+                    /** ### [MS2 UserAccount] 로그인 날짜 업데이트 */
+                    const lastAccess = new Date().toISOString().slice(0, 10).replace(/-/g,".");
+                    await db.collection('user').updateOne({ _id: new ObjectId(user._id)}, { $set: {lastAccess}})
 
-                if (credentials?.username === user.name && credentials?.password === user.password) {
-                    return user
-                } else {
-                    return null
+                    return user;
+                } catch (error) {
+                    console.error(error);
+                    throw error;
                 }
             },
         })

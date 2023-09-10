@@ -1,4 +1,5 @@
 import React from 'react';
+import RegisterButton from "@/components/Button/Register";
 
 const RegisterPage =  () => {
     return (
@@ -53,6 +54,7 @@ const RegisterPage =  () => {
                         >
                             회원가입
                         </button>
+                        <RegisterButton/>
                     </div>
                 </form>
             </div>
