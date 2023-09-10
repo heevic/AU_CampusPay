@@ -5,7 +5,7 @@ const TapMenu = () => {
     const [activeTab, setActiveTab] = useState('교직원');
 
     return (
-        <div className="col-span-2 bg-white">
+        <div className="m-5 mb-0 col-span-2 bg-white">
             <div className="flex border-b mb-4">
                 <button
                     onClick={() => setActiveTab('교직원')}
@@ -28,9 +28,9 @@ const TapMenu = () => {
             </div>
 
             <div>
-                {activeTab === '교직원' && <div>교직원 메뉴</div>}
-                {activeTab === '학생' && <div>학생 메뉴</div>}
-                {activeTab === '기숙사' && <div>기숙사 메뉴</div>}
+                {activeTab === '교직원' && <div className='p-5 pt-0'>교직원 메뉴</div>}
+                {activeTab === '학생' && <div className='p-5 pt-0'>학생 메뉴</div>}
+                {activeTab === '기숙사' && <div className='p-5 pt-0'>기숙사 메뉴</div>}
             </div>
         </div>
     );

@@ -25,7 +25,7 @@ export default async function Home() {
     <main className='w-screen h-screen bg-gray-200'>
         <div className='grid grid-cols-2 gap-4'>
             <TapMenu/>
-            <div className='bg-white'>
+            <div className='ml-5 p-5 bg-white'>
                 <h2>세션 정보</h2>
                 <p>
                     아이디 : root<br/>
@@ -40,8 +40,8 @@ export default async function Home() {
                     )}
                 </>
             </div>
-            <div className='bg-white'>Move Menu</div>
-            <div className='bg-white col-span-2'>Announce</div>
+            <div className='mr-5 p-5 bg-white'>Move Menu</div>
+            <div className='ml-5 mr-5 p-5 bg-white col-span-2'>Announce</div>
         </div>
     </main>
   )
