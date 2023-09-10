@@ -10,20 +10,17 @@ const TapMenu = () => {
                 <button
                     onClick={() => setActiveTab('교직원')}
                     className={`py-2 px-4 w-full text-center ${activeTab === '교직원' ? 'border-b-2 border-blue-500 font-semibold' : ''}`}
-                >
-                    교직원
+                >교직원
                 </button>
                 <button
                     onClick={() => setActiveTab('학생')}
                     className={`py-2 px-4 w-full text-center ${activeTab === '학생' ? 'border-b-2 border-blue-500 font-semibold' : ''}`}
-                >
-                    학생
+                >학생
                 </button>
                 <button
                     onClick={() => setActiveTab('기숙사')}
                     className={`py-2 px-4 w-full text-center ${activeTab === '기숙사' ? 'border-b-2 border-blue-500 font-semibold' : ''}`}
-                >
-                    기숙사
+                >기숙사
                 </button>
             </div>
 
