@@ -24,13 +24,13 @@ const TopNavbar = () => {
                     {!session ? (
                         <>
                             <li><Link href='/login'>로그인</Link></li>
-                            <li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
+                            <li className='pr-10'><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
                         </>
                     ) : (
-                        <li className='xl: pr-10'><Link href='/api/auth/signout/github'>로그아웃</Link></li>
+                        <li className='xl: pr-5'><Link href='/api/auth/signout/github'>로그아웃</Link></li>
                     )}
                 </ul>
-                {/** ### 모바일 대응 (임시) */}
+                {/** ### 모바일 대응 */}
                 <button onClick={handleNavClick} className='pr-10 xmd:hidden max-xmd:block xl:hidden '>
                     <GiHamburgerMenu/>
                 </button>
@@ -45,8 +45,10 @@ const TopNavbar = () => {
                     </li>
                 </ul>
                 <ul className='pr-10 pl-10 text-lg'>
-                    <li className='pb-1.5'><Link href='/admin'>어드민</Link></li>
-                    <li className='pb-1.5'><Link href='/payment'>이니시스</Link></li>
+                    <li className='pb-1.5'><Link href='/payment'>식권 구입</Link></li>
+                    {session?.user?.name === 'root' && (
+                        <li className='pb-1.5'><Link href='/admin'>어드민</Link></li>
+                    )}
                     {/** TODO: Feature 정해진 후 배열에 담아 map 반복 */}
                     {!session ? (
                         <>
@@ -54,7 +56,9 @@ const TopNavbar = () => {
                             <li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
                         </>
                     ) : (
-                        <li className='xl: pr-10'><Link href='/api/auth/signout/github'>로그아웃</Link></li>
+                        <li className='xl: pr-10'>
+                            <Link href='/api/auth/signout/github'>로그아웃</Link>
+                        </li>
                     )}
                 </ul>
             </div>
