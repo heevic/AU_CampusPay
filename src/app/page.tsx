@@ -26,7 +26,10 @@ export default async function Home() {
                     공급자 : 깃허브 (카카오로 변경 예정)
                 </p>
                 {session ? (
-                    <div>session : {session?.user?.name}</div>
+                    <>
+                        <div>session : {session?.user?.email}</div>
+                        <div>session : {session?.user?.role}</div>
+                    </>
                 ) : (
                     <div>session : null</div>
                 )}

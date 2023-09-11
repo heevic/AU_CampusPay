@@ -1,7 +1,7 @@
 import React from 'react';
 import RegisterButton from "@/components/Button/Register";
 
-const RegisterPage =  () => {
+const RegisterPage = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 bg-white p-6 rounded-md shadow-md">
@@ -16,7 +16,7 @@ const RegisterPage =  () => {
                     method="POST"
                     encType="multipart/form-data"
                 >
-                <div className="rounded-md shadow-sm -space-y-px">
+                    <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="email-address" className="sr-only">
                                 이메일 주소
