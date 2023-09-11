@@ -33,18 +33,11 @@ export const options: NextAuthOptions = {
                 }
             },
             /** ### 자격증명을 이용한 사용자 인증 ( MongoDb ) */
-            async authorize(credentials) {
+            async authorize(credentials: any): Promise<any> {
                 try {
                     if (!credentials || !credentials.email || !credentials.password) {
                         throw new Error("No credentials provided");
                     }
-                    /** 테스트 관리자 계정 몽고디비 연결 필요 */
-                    /*const user = {
-                        id: 'i0000001',
-                        name: 'root',
-                        password: 'welcome2ansan',
-                        role: 'admin'
-                    }*/
                     /** ###  MongoDB 접근 */
                     let db = (await connectDB).db(process.env.MONGODB_NAME);
                     /**
@@ -52,7 +45,7 @@ export const options: NextAuthOptions = {
                      * (credentials: null || undefined 또는 객체에 email, password 속성이 없는 경우)
                      */
                     if (!credentials) throw new Error("No credentials provided");
-                    let user = await db.collection('user').findOne({
+                    let user = await db.collection(process.env.MONGODB_USER_COLLECTION as string).findOne({
                         email: credentials.email
                     });
                     if (!user) throw new Error("User not found");
@@ -104,7 +97,7 @@ export const options: NextAuthOptions = {
     },
     /** ### 경로 */
     pages: {
-        //signIn: '/login',
+        signIn: '/login',
         //signOut: '/login',
     },
     /** ### 어댑터 & 시크릿키 */

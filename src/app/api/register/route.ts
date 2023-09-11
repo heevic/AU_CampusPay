@@ -15,22 +15,23 @@ export async function POST(request: Request) {
      */
     const name = formData.get('name');
     const email = formData.get('email');
-    const password = formData.get('password');
+    /** ### password 해싱으로 인한 임시타입 : any */
+    const password: any = formData.get('password');
     const student_number = formData.get('student_number');
     const phone = formData.get('phone');
 
     try {
         /** ### 데이터베이스 연결 */
-        let db = (await connectDB).db(process.env.MONGODB_NAME!);
+        let db = (await connectDB).db(process.env.MONGODB_NAME as string);
         /** ### 비밀번호 해시값 생성 */
-        let pwdHash: string = await bcrypt.hash(password, 10);
+        let pwdHash: any = await bcrypt.hash(password, 10);
         /** ### 회원정보 데이터베이스에 저장 */
-        await db.collection(process.env.MONGODB_USER_COLLECTION!).insertOne({
+        await db.collection(process.env.MONGODB_USER_COLLECTION as string).insertOne({
             email,
             password: pwdHash,
-            name,
-            student_number,
-            phone,
+            //name,
+            //student_number,
+            //phone,
             role: 'customer',
         });
         /**

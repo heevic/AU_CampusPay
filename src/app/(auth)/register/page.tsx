@@ -54,7 +54,7 @@ const RegisterPage =  () => {
                         >
                             회원가입
                         </button>
-                        <RegisterButton/>
+                        {/*<RegisterButton/>*/}
                     </div>
                 </form>
             </div>

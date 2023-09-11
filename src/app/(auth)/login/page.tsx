@@ -1,6 +1,19 @@
+'use client'
 import React from 'react';
+import {signIn} from "next-auth/react";
 
 const LoginPage = () => {
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const response = await signIn('Credentials', {
+            email,
+            password,
+            redirect: false
+        });
+        console.log(response)
+    }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 bg-white p-6 rounded-md shadow-md">
@@ -9,7 +22,10 @@ const LoginPage = () => {
                         로그인
                     </h2>
                 </div>
-                <form className="mt-8 space-y-6" action="#" method="POST">
+                <form
+                    className="mt-8 space-y-6"
+                    onSubmit={handleSubmit}
+                >
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="email-address" className="sr-only">

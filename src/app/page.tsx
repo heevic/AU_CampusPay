@@ -13,7 +13,7 @@ export default async function Home() {
   const session: Session | null = await getServerSession(options)
 
     return (
-    <main className='w-screen h-screen bg-gray-200'>
+    <main className='h-screen bg-gray-200'>
         <div className='grid grid-cols-2 gap-4'>
             {/** ### TapMenu Component */}
             <TapMenu/>
