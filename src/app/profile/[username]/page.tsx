@@ -6,7 +6,7 @@ type Props = {
     }
 }
 
-const Page = ({params}: Props) => {
+const ProfilePage = ({params}: Props) => {
     return (
         <div>
            User {params.username}
@@ -14,4 +14,4 @@ const Page = ({params}: Props) => {
     );
 };
 
-export default Page;
+export default ProfilePage;

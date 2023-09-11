@@ -8,7 +8,7 @@ type Props = {
     }
 }
 
-const Payments = ({params}: Props) => {
+const PaymentsPage = ({params}: Props) => {
     const paymentHandler = () => {
         if (!window.IMP) return;
 
@@ -30,13 +30,13 @@ const Payments = ({params}: Props) => {
             // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
             // 결제 완료 이후 결제 위변조 대사 작업시 주문번호를 이용하여 검증이 필요하므로 주문번호는 가맹점 서버에서 고유하게(unique)채번하여 DB 상에 저장해주세요
             merchant_uid: `mid_${new Date().getTime()}`, // 주문번호
-            name: "당근 10kg",                               // 주문명
-            amount: 100,                                 // 결제금액
-            buyer_name: "홍길동",                          // 구매자 이름
+            name: "안산대학교",                               // 주문명
+            amount: 5000,                                 // 결제금액
+            buyer_name: "UserName",                          // 구매자 이름
             buyer_tel: "01012341234",                    // 구매자 전화번호
             buyer_email: "example@example.com",          // 구매자 이메일
-            buyer_addr: "신사동 661-16",                   // 구매자 주소
-            buyer_postcode: "06018",                     // 구매자 우편번호
+            //buyer_addr: "신사동 661-16",                   // 구매자 주소
+            //buyer_postcode: "06018",                     // 구매자 우편번호
             // notice_url: "http//localhost:3002/api/payments/webhook",
         };
 
@@ -46,10 +46,6 @@ const Payments = ({params}: Props) => {
 
     async function callback(rsp: RequestPayResponse) {
         const { success, error_msg, merchant_uid, imp_uid } = rsp;
-        /*console.log("success : ", success);
-        console.log("imp_uid : ", imp_uid);
-        console.log("merchant_uid : ", merchant_uid);
-        console.log("error_msg : ", error_msg);*/
 
         if (success) {
             const res = await fetch("ENDPOINT", {
@@ -70,7 +66,7 @@ const Payments = ({params}: Props) => {
 
     return (
         <>
-            <div>{params.slug}</div>
+            <div>params.slug : {params.slug}</div>
             <button onClick={paymentHandler}>
                 결제하기
             </button>
@@ -78,4 +74,4 @@ const Payments = ({params}: Props) => {
     );
 }
 
-export default Payments;
+export default PaymentsPage;

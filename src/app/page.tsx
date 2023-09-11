@@ -36,15 +36,15 @@ export default async function Home() {
             </div>
             {/** ### Link */}
             <div className='mr-5 p-5 bg-white flex flex-col gap-4'>
-                <Link href={'/confirmation/username'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                <Link href={`/confirmation/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                     <BsQrCode/>
                     <span>식권 사용</span>
                 </Link>
-                <Link href={'/payment/username'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                <Link href={`/payment/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                     <MdPayment/>
                     <span>식권 구입</span>
                 </Link>
-                <Link href={'/profile/username'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                <Link href={`/profile/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                     <AiOutlineHistory/>
                     <span>결제 내역</span>
                 </Link>
@@ -56,7 +56,7 @@ export default async function Home() {
                 }
             </div>
             {/** ### AnnounceManet */}
-            <div className='ml-5 mr-5 p-5 bg-white col-span-2'>Announce</div>
+            <div className='ml-5 mr-5 p-5 bg-white col-span-2'>공지사항</div>
         </div>
     </main>
   )
