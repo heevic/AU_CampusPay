@@ -4,9 +4,10 @@ import Link from "next/link";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {AiOutlineClose} from "react-icons/ai";
 import {useSession} from "next-auth/react";
+import {Session} from "@/types/auth";
 
 const TopNavbar = () => {
-    const {data: session} = useSession()
+    const {data: session} = useSession() as { data: Session | null };
     const [isClicked, setIsClicked] = useState(false);
     const handleNavClick = () => {
         setIsClicked(!isClicked)
@@ -19,10 +20,13 @@ const TopNavbar = () => {
             <nav className='flex justify-between items-center bg-blue-300 h-14'>
                 <div className='pl-10'><Link href='/'>메인(로고 자리)</Link></div>
                 <ul className='h-full flex justify-start items-center gap-3 max-xmd:hidden'>
-                    <li><Link href='/admin'>관리자 페이지</Link></li>
-                    <li><Link href='/payment/username'>이니시스</Link></li>
+                    {session?.user?.role === 'admin' &&
+                        <li><Link href='/admin'>관리자 페이지</Link></li>
+                    }
+                    <li><Link href='/payment/username'>식권구입</Link></li>
                     {!session ? (
                         <>
+                            <li><Link href='/register'>회원가입</Link></li>
                             <li><Link href='/login'>로그인</Link></li>
                             <li className='pr-10'><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
                         </>

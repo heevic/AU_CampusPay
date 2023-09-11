@@ -21,14 +21,14 @@ export default async function Home() {
             <div className='ml-5 p-5 bg-white'>
                 <h2>세션 정보</h2>
                 <p>
-                    아이디 : root<br/>
+                    아이디 : root@ansan.ac.kr<br/>
                     비밀번호 : welcome2ansan<br/>
                     공급자 : 깃허브 (카카오로 변경 예정)
                 </p>
                 {session ? (
                     <>
-                        <div>session : {session?.user?.email}</div>
-                        <div>session : {session?.user?.role}</div>
+                        <div>User Email : {session?.user?.email}</div>
+                        <div>User Role : {session?.user?.role}</div>
                     </>
                 ) : (
                     <div>session : null</div>
@@ -48,7 +48,7 @@ export default async function Home() {
                     <AiOutlineHistory/>
                     <span>결제 내역</span>
                 </Link>
-                {session?.user?.name === 'root' &&
+                {session?.user?.role === 'admin' &&
                     <Link href={'/admin'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                         <GrUserAdmin/>
                         <span>관리자 페이지</span>
