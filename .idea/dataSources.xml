@@ -9,5 +9,12 @@
       <jdbc-url>mongodb+srv://admin:welcome2ansan@cluster0.7hmm6mg.mongodb.net/?retryWrites=true&amp;w=majority</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="db2151016@infodb.ansan.ac.kr" uuid="d6f4e39f-cff3-4c4e-8e87-aceac5dbba6f">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://infodb.ansan.ac.kr:3306/db2151016</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
