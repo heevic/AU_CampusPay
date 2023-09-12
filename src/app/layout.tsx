@@ -25,7 +25,6 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <Script src="https://cdn.iamport.kr/v1/iamport.js"/>
         <body  className={`${gothic.className}`}>
         <AuthProvider>
-            <TopNavbar/>
             {children}
         </AuthProvider>
         </body>
