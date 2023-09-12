@@ -19,19 +19,20 @@ export default async function Home() {
             <TapMenu/>
             {/** ### User Profile */}
             <div className='ml-5 p-5 bg-white'>
-                <h2>세션 정보</h2>
-                <p>
-                    아이디 : root@ansan.ac.kr<br/>
-                    비밀번호 : welcome2ansan<br/>
-                    공급자 : 깃허브 (카카오로 변경 예정)
-                </p>
                 {session ? (
                     <>
                         <div>User Email : {session?.user?.email}</div>
                         <div>User Role : {session?.user?.role}</div>
                     </>
                 ) : (
-                    <div>session : null</div>
+                    <>
+                        <Link href={`/login`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                            <span>로그인</span>
+                        </Link>
+                        <Link href={`/register`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                            <span>회원가입</span>
+                        </Link>
+                    </>
                 )}
             </div>
             {/** ### Link */}

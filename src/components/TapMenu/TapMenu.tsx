@@ -3,7 +3,8 @@ import React, {useEffect, useState} from 'react';
 
 const TapMenu = () => {
     const [activeTab, setActiveTab] = useState('교직원');
-    const [text, setText] = useState('데이터 로딩중...');
+    /* TODO - 임시 데이터 추가시 타입 재정의 예정 */
+    const [text, setText] = useState<any>('데이터 로딩중...');
 
     useEffect(() => {
         fetch('/api/cooks')

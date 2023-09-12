@@ -45,7 +45,7 @@ export const options: NextAuthOptions = {
                      * (credentials: null || undefined 또는 객체에 email, password 속성이 없는 경우)
                      */
                     if (!credentials) throw new Error("No credentials provided");
-                    let user = await db.collection(process.env.MONGODB_USER_COLLECTION as string).findOne({
+                    let user = await db.collection(process.env.MONGODB_USER as string).findOne({
                         email: credentials.email
                     });
                     if (!user) throw new Error("User not found");

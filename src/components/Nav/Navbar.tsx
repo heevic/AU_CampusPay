@@ -17,7 +17,7 @@ const TopNavbar = () => {
         <header className=''>
             {/** ### 네비게이션 메뉴 */}
             {/** TODO : 관리자 페이지 session...role === admin */}
-            <nav className='flex justify-between items-center bg-blue-300 h-14'>
+            <nav className='flex justify-between items-center bg-blue-custom h-14'>
                 <div className='pl-10'><Link href='/'>메인(로고 자리)</Link></div>
                 <ul className='h-full flex justify-start items-center gap-3 max-xmd:hidden'>
                     {session?.user?.role === 'admin' &&

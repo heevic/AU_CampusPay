@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         /** ### 비밀번호 해시값 생성 */
         let pwdHash: any = await bcrypt.hash(password, 10);
         /** ### 회원정보 데이터베이스에 저장 */
-        await db.collection(process.env.MONGODB_USER_COLLECTION as string).insertOne({
+        await db.collection(process.env.MONGODB_USER as string).insertOne({
             email,
             password: pwdHash,
             //name,
