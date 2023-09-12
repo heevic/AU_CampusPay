@@ -10,21 +10,24 @@ type Props = {
     }
 }
 
-const PaymentsPage = ({params}: Props) => {
+const PaymentsPage = ({ params }: Props) => {
     return (
-        <div className='w-1/2 min-h-screen m-auto p-4 flex flex-col items-center justify-center'>
-            <TapMenu/>
-            {/* 조식, 중식, 석식*/}
-            <CookItem props={'조식'}/>
-            <CookItem props={`중식1`}/>
-            <CookItem props={'중식2'}/>
-            <CookItem props={'석식'}/>
-            <div className='w-1/2 flex justify-around'>
-                <PreviousButton/>
-                <PaymentBtn/>
+        <div className="w-full min-h-screen bg-gray-100 py-8">
+            <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+                <TapMenu />
+                <div className="grid grid-cols-1 gap-4 mt-4">
+                    <CookItem props={'조식'} />
+                    <CookItem props={`중식1`} />
+                    <CookItem props={'중식2'} />
+                    <CookItem props={'석식'} />
+                </div>
+                <div className="flex justify-around mt-6">
+                    <PreviousButton />
+                    <PaymentBtn />
+                </div>
             </div>
         </div>
     );
-}
+};
 
 export default PaymentsPage;
