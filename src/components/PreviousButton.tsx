@@ -2,14 +2,18 @@
 import React from 'react';
 import {useRouter} from "next/navigation";
 
-const PreviousButton = () => {
+type PreviousButtonProps = {
+    props: string;
+}
+
+const PreviousButton = ({props}: PreviousButtonProps) => {
     const router = useRouter();
     const handlePrevious= () => {
         router.push('/')
     }
 
     return (
-        <button onClick={handlePrevious}>취소</button>
+        <button onClick={handlePrevious}>{props}</button>
     );
 };
 

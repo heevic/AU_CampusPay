@@ -22,7 +22,7 @@ const PaymentsPage = ({ params }: Props) => {
                     <CookItem props={'석식'} />
                 </div>
                 <div className="flex justify-around mt-6">
-                    <PreviousButton />
+                    <PreviousButton props={'취소'} />
                     <PaymentBtn />
                 </div>
             </div>
