@@ -1,6 +1,6 @@
 import React from 'react';
 import CookItem from "@/components/CookItem/CookItem";
-import PaymentBtn from "@/app/payment/paymentBtn";
+import PaymentBtn from "@/app/payment/PaymentBtn";
 import TapMenu from "@/components/TapMenu/TapMenu";
 import PreviousButton from "@/components/PreviousButton";
 
