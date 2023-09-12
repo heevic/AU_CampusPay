@@ -1,8 +1,16 @@
 'use client'
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const TapMenu = () => {
     const [activeTab, setActiveTab] = useState('교직원');
+    const [text, setText] = useState('데이터 로딩중...');
+
+    useEffect(() => {
+        fetch('/api/cooks')
+            .then((res) => res.json())
+            .then((data) => setText(data.data));
+    }, []);
+    console.log(text[0].menu)
 
     return (
         <div className="m-5 mb-0 col-span-2 bg-white">
@@ -25,7 +33,7 @@ const TapMenu = () => {
             </div>
 
             <div>
-                {activeTab === '교직원' && <div className='p-5 pt-0'>교직원 메뉴</div>}
+                {activeTab === '교직원' && <div className='p-5 pt-0'>{text[0].menu}</div>}
                 {activeTab === '학생' && <div className='p-5 pt-0'>학생 메뉴</div>}
                 {activeTab === '기숙사' && <div className='p-5 pt-0'>기숙사 메뉴</div>}
             </div>

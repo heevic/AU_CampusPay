@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import {RequestPayParams, RequestPayResponse} from "@/types/portone";
+import {useRouter} from "next/navigation";
 
 type Props = {
     params: {
@@ -9,13 +10,13 @@ type Props = {
 }
 
 const PaymentsPage = ({params}: Props) => {
+    const router = useRouter();
     const paymentHandler = () => {
         if (!window.IMP) return;
 
         /* 1. 가맹점 식별 */
         const { IMP } = window;
-        // IMP.init("imp67011510"); 임시값
-        IMP.init("imp67011510");
+        IMP.init("imp67011510");    // IMP.init("imp67011510"); 임시값
         // if (process.env.NEXT_PUBLIC_IAMPORT_IMP) {
         //     IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP);   // 가맹점 식별코드
         // } else {
@@ -59,8 +60,13 @@ const PaymentsPage = ({params}: Props) => {
 
             const data = await res.json();
             console.log("data : ", data);
+
+            /** ### 결제 성공시 리다이렉트 경로 */
+            router.replace('/');
         } else {
             alert(`결제 실패: ${error_msg}`);
+            /** ### 결제 실패시 리다이렉트 경로 */
+            router.replace('/');
         }
     }
 
