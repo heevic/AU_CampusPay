@@ -48,7 +48,7 @@ export default async function Home() {
                             <MdPayment/>
                             <span>식권 구입</span>
                         </Link>
-                        <Link href={`/profile/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                        <Link href={`/history/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                             <AiOutlineHistory/>
                             <span>결제 내역</span>
                         </Link>
