@@ -58,7 +58,7 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             console.log("data : ", data);
 
             /** ### 결제 성공시 리다이렉트 경로 */
-            //router.replace('/');
+            router.replace('/');
         } else {
             alert(`결제 실패: ${error_msg}`);
             /** ### 결제 실패시 리다이렉트 경로 */
