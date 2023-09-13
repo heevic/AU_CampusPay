@@ -11,13 +11,7 @@ const PaymentBtn = () => {
 
         /* 1. 가맹점 식별 */
         const { IMP } = window;
-        IMP.init("imp67011510");    // IMP.init("imp67011510"); 임시값
-        // if (process.env.NEXT_PUBLIC_IAMPORT_IMP) {
-        //     IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP);   // 가맹점 식별코드
-        // } else {
-        //     console.error('Error : 환경변수 process.env.NEXT_PUBLIC_IAMPORT_IMP 미설정');
-        // }
-        // console.log(process.env.NEXT_PUBLIC_IAMPORT_IMP)
+        IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP as string);    // IMP.init("imp67011510"); 임시값
 
         /* 2. 결제 데이터 정의 */
         const data: RequestPayParams = {
@@ -31,8 +25,7 @@ const PaymentBtn = () => {
             buyer_name: "UserName",                          // 구매자 이름
             buyer_tel: "01012341234",                    // 구매자 전화번호
             buyer_email: "example@example.com",          // 구매자 이메일
-            //buyer_addr: "신사동 661-16",                   // 구매자 주소
-            //buyer_postcode: "06018",                     // 구매자 우편번호
+            m_redirect_url: "/"                          // 결제 완료 후 이동할 URL
             // notice_url: "http//localhost:3002/api/payments/webhook",
         };
 
@@ -44,7 +37,7 @@ const PaymentBtn = () => {
         const { success, error_msg, merchant_uid, imp_uid } = rsp;
 
         if (success) {
-            const res = await fetch('/api/payment', {
+            const res = await fetch("ENDPOINT", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -57,11 +50,11 @@ const PaymentBtn = () => {
             console.log("data : ", data);
 
             /** ### 결제 성공시 리다이렉트 경로 */
-            router.replace('/');
+            //router.replace('/');
         } else {
             alert(`결제 실패: ${error_msg}`);
             /** ### 결제 실패시 리다이렉트 경로 */
-            router.replace('/');
+            //router.replace('/');
         }
     }
 
