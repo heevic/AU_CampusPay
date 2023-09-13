@@ -1,6 +1,6 @@
 import React from "react";
 import '@/app/globals.css';
-import AuthProvider from "@/app/context/AuthProvider";
+import AuthProvider from "@/components/context/AuthProvider";
 import type {Metadata} from 'next'
 import Script from "next/script";
 import TopNavbar from "@/components/Nav/Navbar";

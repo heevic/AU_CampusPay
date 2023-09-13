@@ -32,7 +32,6 @@ const TapMenu = () => {
                 >기숙사
                 </button>
             </div>
-
             <div>
                 {activeTab === '교직원' && <div className='p-5 pt-0'>{text[0].menu}</div>}
                 {activeTab === '학생' && <div className='p-5 pt-0'>학생 메뉴</div>}
