@@ -7,7 +7,7 @@ const QrCode = () => {
 
     useEffect(() => {
         if (canvasRef.current) {
-            QRCode.toCanvas(canvasRef.current, '네이버', function (error) {
+            QRCode.toCanvas(canvasRef.current, 'http://localhost:3000/confirmation/undefined', function (error) {
                 if (error) console.error(error);
                 console.log('success!');
             });

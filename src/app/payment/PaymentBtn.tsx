@@ -44,7 +44,7 @@ const PaymentBtn = () => {
         const { success, error_msg, merchant_uid, imp_uid } = rsp;
 
         if (success) {
-            const res = await fetch("ENDPOINT", {
+            const res = await fetch('/api/payment', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
