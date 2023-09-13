@@ -1,9 +1,4 @@
 import React from 'react';
-import CookItem from "@/app/payment/CookItem";
-import PaymentBtn from "@/app/payment/PaymentBtn";
-import TapMenu from "@/components/TapMenu/TapMenu";
-import PreviousButton from "@/components/PreviousButton";
-import PaymentTapMenu from "@/app/payment/PaymentTapMenu";
 import PaymentContainer from "@/app/payment/PaymentContainer";
 
 type Props = {
