@@ -11,7 +11,10 @@ import {Session} from "@/types/auth";
 import TopNavbar from "@/components/Nav/Navbar";
 
 export default async function Home() {
-  const session: Session | null = await getServerSession(options)
+    const session: Session | null = await getServerSession(options)
+    const res = await fetch(`${process.env.SITE_URL}/api/notice`);
+    const data = await res.json();
+    const factText = data.data[0];
 
     return (
         <>
@@ -29,10 +32,12 @@ export default async function Home() {
                             </>
                         ) : (
                             <>
-                                <Link href={`/login`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                                <Link href={`/login`}
+                                      className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                                     <span>로그인</span>
                                 </Link>
-                                <Link href={`/register`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                                <Link href={`/register`}
+                                      className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                                     <span>회원가입</span>
                                 </Link>
                             </>
@@ -40,20 +45,25 @@ export default async function Home() {
                     </div>
                     {/** ### Link */}
                     <div className='mr-5 p-5 bg-white flex flex-col gap-4'>
-                        <Link href={`/confirmation/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                        <Link href={`/confirmation/${session?.user?.email}`}
+                              className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                             <BsQrCode/>
                             <span>식권 사용</span>
                         </Link>
-                        <Link href={`/payment/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                        <Link href={`/payment/${session?.user?.email}`}
+                              className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                             <MdPayment/>
                             <span>식권 구입</span>
                         </Link>
-                        <Link href={`/history/${session?.user?.email}`} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                        <Link href={`/history/${session?.user?.email}`}
+                              className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                             <AiOutlineHistory/>
                             <span>결제 내역</span>
                         </Link>
+                        {/** ### 관리자 유저 처리 */}
                         {session?.user?.role === 'admin' &&
-                            <Link href={'/admin'} className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
+                            <Link href={'/admin'}
+                                  className='flex items-center gap-1 p-3 rounded-md border border-gray-300 hover:bg-gray-100'>
                                 <GrUserAdmin/>
                                 <span>관리자 페이지</span>
                             </Link>
@@ -62,9 +72,18 @@ export default async function Home() {
                     {/** ### AnnounceManet */}
                     <div className='ml-5 mr-5 p-5 bg-white col-span-2'>
                         <h3>공지사항</h3>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th>{factText.title}</th>
+                                <td>{factText.content}</td>
+                                <td>{factText.date}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </main>
         </>
-  )
+    )
 }
