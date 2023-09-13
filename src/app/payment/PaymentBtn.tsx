@@ -3,7 +3,15 @@ import React from 'react';
 import {useRouter} from "next/navigation";
 import {RequestPayParams, RequestPayResponse} from "@/types/portone";
 
-const PaymentBtn = () => {
+type PaymentContainerProps = {
+    props: {
+        name: string,
+        amount: number
+    }
+}
+
+const PaymentBtn = ({props}: PaymentContainerProps) => {
+    console.log('amount' ,props.amount)
     const router = useRouter();
     //console.log(`params.slug : ${params.slug}`)
     const paymentHandler = () => {
@@ -20,8 +28,8 @@ const PaymentBtn = () => {
             // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
             // 결제 완료 이후 결제 위변조 대사 작업시 주문번호를 이용하여 검증이 필요하므로 주문번호는 가맹점 서버에서 고유하게(unique)채번하여 DB 상에 저장해주세요
             merchant_uid: `mid_${new Date().getTime()}`, // 주문번호
-            name: "안산대학교",                               // 주문명
-            amount: 5000,                                 // 결제금액
+            name: props.name,                               // 주문명
+            amount: props.amount,                                 // 결제금액
             buyer_name: "UserName",                          // 구매자 이름
             buyer_tel: "01012341234",                    // 구매자 전화번호
             buyer_email: "example@example.com",          // 구매자 이메일
