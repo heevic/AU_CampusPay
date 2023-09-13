@@ -17,7 +17,7 @@ const TopNavbar = () => {
         <header className=''>
             {/** ### 네비게이션 메뉴 */}
             {/** TODO : 관리자 페이지 session...role === admin */}
-            <nav className='flex justify-between items-center bg-blue-custom h-14'>
+            <nav className='h-14 flex justify-between items-center bg-blue-custom text-white'>
                 <div className='pl-10'><Link href='/'>메인(로고 자리)</Link></div>
                 <ul className='h-full flex justify-start items-center gap-3 max-xmd:hidden'>
                     {session?.user?.role === 'admin' &&
@@ -27,8 +27,8 @@ const TopNavbar = () => {
                     {!session ? (
                         <>
                             <li><Link href='/register'>회원가입</Link></li>
-                            <li><Link href='/login'>로그인</Link></li>
-                            <li className='pr-10'><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
+                            <li className='pr-10'><Link href='/login'>로그인</Link></li>
+                            {/*<li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>*/}
                         </>
                     ) : (
                         <li className='xl: pr-5'><Link href='/api/auth/signout/github'>로그아웃</Link></li>
