@@ -11,7 +11,6 @@ const TapMenu = () => {
             .then((res) => res.json())
             .then((data) => setText(data.data));
     }, []);
-    console.log(text[0].menu)
 
     return (
         <div className="m-5 mb-0 col-span-2 bg-white">

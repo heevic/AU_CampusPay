@@ -2,6 +2,7 @@
 import React from 'react';
 import {useRouter} from "next/navigation";
 import {RequestPayParams, RequestPayResponse} from "@/types/portone";
+import {useSession} from "next-auth/react";
 
 type PaymentContainerProps = {
     props: {
@@ -11,9 +12,9 @@ type PaymentContainerProps = {
 }
 
 const PaymentBtn = ({props}: PaymentContainerProps) => {
-    console.log('amount' ,props.amount)
+    const { data: session } = useSession();
     const router = useRouter();
-    //console.log(`params.slug : ${params.slug}`)
+
     const paymentHandler = () => {
         if (!window.IMP) return;
 
@@ -33,7 +34,6 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             buyer_name: "UserName",                          // 구매자 이름
             buyer_tel: "01012341234",                    // 구매자 전화번호
             buyer_email: "example@example.com",          // 구매자 이메일
-            m_redirect_url: "/"                          // 결제 완료 후 이동할 URL
             // notice_url: "http//localhost:3002/api/payments/webhook",
         };
 
@@ -58,18 +58,16 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             console.log("data : ", data);
 
             /** ### 결제 성공시 리다이렉트 경로 */
-            router.replace('/');
+            router.replace(`${process.env.SITE_URL}/confirmation/${session?.user?.name}`);
         } else {
             alert(`결제 실패: ${error_msg}`);
             /** ### 결제 실패시 리다이렉트 경로 */
-            //router.replace('/');
+            router.replace(`/payment/${session?.user?.name}`);
         }
     }
 
     return (
-        <button onClick={paymentHandler}>
-            결제하기
-        </button>
+        <button onClick={paymentHandler}>결제하기</button>
     );
 };
 

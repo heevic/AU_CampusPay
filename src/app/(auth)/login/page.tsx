@@ -12,7 +12,14 @@ const LoginPage = () => {
             password,
             redirect: false
         });
-        console.log(response)
+
+        if (response?.error) {
+            // 로그인 에러 처리
+            console.error(response.error);
+        } else {
+            // 로그인 성공시 홈페이지로 리다이렉트
+            window.location.href = '/';
+        }
     }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

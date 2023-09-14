@@ -7,7 +7,11 @@ type Props = {
     }
 }
 
-const ConfirmationPage = ({params}: Props) => {
+const ConfirmationPage = async ({params}: Props) => {
+    //const res = await fetch('ENDPOINT');
+    //const data = await res.json();
+    //const factText = data.data[0];
+
     return (
         <div className="h-screen flex flex-col justify-center items-center bg-gray-50">
             <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
