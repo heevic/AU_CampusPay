@@ -20,11 +20,13 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
 
         /* 1. 가맹점 식별 */
         const { IMP } = window;
-        IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP as string);    // IMP.init("imp67011510"); 임시값
+        IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP as string);
 
         /* 2. 결제 데이터 정의 */
         const data: RequestPayParams = {
-            pg: "html5_inicis",               // PG사 코드표 참조
+            // pg 사 코드표 : https://developers.portone.io/docs/ko/tip/pg-2
+            pg: "kakaopay.TC0ONETIME",               // 카카오 페이
+            //pg: "html5_inicis.INIBillTst",               // Kg 이니시스
             pay_method: "card",                          // 결제수
             // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
             // 결제 완료 이후 결제 위변조 대사 작업시 주문번호를 이용하여 검증이 필요하므로 주문번호는 가맹점 서버에서 고유하게(unique)채번하여 DB 상에 저장해주세요
@@ -34,7 +36,8 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             buyer_name: "UserName",                          // 구매자 이름
             buyer_tel: "01012341234",                    // 구매자 전화번호
             buyer_email: "example@example.com",          // 구매자 이메일
-            // notice_url: "http//localhost:3002/api/payments/webhook",
+            m_redirect_url: '/',
+            notice_url: "http//localhost:3002/api/payments/webhook",
         };
 
         /* 4. 결제 창 호출하기 */
@@ -58,6 +61,7 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             console.log("data : ", data);
 
             /** ### 결제 성공시 리다이렉트 경로 */
+            alert('결제 성공')
             router.replace(`${process.env.SITE_URL}/confirmation/${session?.user?.name}`);
         } else {
             alert(`결제 실패: ${error_msg}`);
