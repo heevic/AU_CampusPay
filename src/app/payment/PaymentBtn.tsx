@@ -17,12 +17,11 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
 
     const paymentHandler = () => {
         if (!window.IMP) return;
-
-        /* 1. 가맹점 식별 */
+        /** ### 1. 가맹점 식별 */
         const { IMP } = window;
         IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP as string);
         /**
-         * 2. 결제 데이터 정의
+         * ### 2. 결제 데이터 정의
          * pg 사 코드표 : https://developers.portone.io/docs/ko/tip/pg-2
          * pg : pg사 (카카오 페이 or kg 이니시스)
          * pay_method : 결제 방법
@@ -44,11 +43,11 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             buyer_name: 'props.username',
             buyer_tel: 'props.phone',
             buyer_email: 'props.email',
-            m_redirect_url: '/',
-            notice_url: "http//localhost:3002/api/payments/webhook",
+            m_redirect_url: `/`,
+            //notice_url: `${process.env.SITE_URL}/api/payments/webhook`,
         };
-
-        /* 4. 결제 창 호출하기 */
+        console.log(`RequestPayParams : ${data.name}`)
+        /** ### 4. 결제 창 호출하기 */
         IMP.request_pay(data, callback);
     };
 
@@ -56,7 +55,7 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
         const { success, error_msg, merchant_uid, imp_uid } = rsp;
 
         if (success) {
-            const res = await fetch("ENDPOINT", {
+            const res = await fetch(`/api/payment`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -70,7 +69,8 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
 
             /** ### 결제 성공시 리다이렉트 경로 */
             alert('결제 성공')
-            router.replace(`${process.env.SITE_URL}/confirmation/${session?.user?.name}`);
+            //router.replace(`${process.env.SITE_URL}/confirmation/${session?.user?.name}`);
+            router.replace(`/`);
         } else {
             alert(`결제 실패: ${error_msg}`);
             /** ### 결제 실패시 리다이렉트 경로 */
