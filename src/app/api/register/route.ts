@@ -22,9 +22,9 @@ export async function POST(request: Request) {
 
     try {
         /** ### 데이터베이스 연결 */
-        let db = (await connectDB).db(process.env.MONGODB_NAME as string);
+        const db = (await connectDB).db(process.env.MONGODB_NAME as string);
         /** ### 비밀번호 해시값 생성 */
-        let pwdHash: any = await bcrypt.hash(password, 10);
+        const pwdHash: any = await bcrypt.hash(password, 10);
         /** ### 회원정보 데이터베이스에 저장 */
         await db.collection(process.env.MONGODB_USER as string).insertOne({
             email,
