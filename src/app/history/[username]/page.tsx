@@ -1,6 +1,6 @@
 import React from 'react';
 import HistoryItem from "@/app/history/HistoryItem";
-import PreviousButton from "@/components/PreviousButton";
+import PreviousButton from "@/components/ui/PreviousButton";
 
 type Props = {
     params: {

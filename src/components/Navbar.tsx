@@ -3,8 +3,10 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {AiOutlineClose} from "react-icons/ai";
-import {useSession} from "next-auth/react";
+import {signIn, signOut, useSession} from "next-auth/react";
 import {Session} from "@/types/auth";
+import ColorButton from "@/components/ui/ColorButton";
+import Image from 'next/image'
 
 const TopNavbar = () => {
     const {data: session} = useSession() as { data: Session | null };
@@ -18,20 +20,34 @@ const TopNavbar = () => {
             {/** ### 네비게이션 메뉴 */}
             {/** TODO : 관리자 페이지 session...role === admin */}
             <nav className='h-14 flex justify-between items-center bg-blue-custom text-white'>
-                <div className='pl-10'><Link href='/'>메인(로고 자리)</Link></div>
+                <div className='pl-10'>
+                    <Link className='flex items-center gap-1' href='/'>
+                        <Image
+                            src='/logo_Kor.svg'
+                            width={125}
+                            height={80}
+                            alt='웹페이지 로고'
+                        />
+                    </Link>
+                </div>
                 <ul className='h-full flex justify-start items-center gap-3 max-xmd:hidden'>
                     {session?.user?.role === 'admin' &&
                         <li><Link href='/admin'>관리자 페이지</Link></li>
                     }
+                    <li><Link href='/confirmation/username'>식권사용</Link></li>
                     <li><Link href='/payment/username'>식권구입</Link></li>
+                    <li><Link href='/history/username'>결제내역</Link></li>
                     {!session ? (
                         <>
                             <li><Link href='/register'>회원가입</Link></li>
-                            <li className='pr-10'><Link href='/login'>로그인</Link></li>
-                            {/*<li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>*/}
+                            <li className='xl: pr-10'>
+                                <ColorButton text={'로그인'} onClick={() => signIn()}/>
+                            </li>
                         </>
                     ) : (
-                        <li className='xl: pr-5'><Link href='/api/auth/signout/github'>로그아웃</Link></li>
+                        <li className='xl: pr-10'>
+                            <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
+                        </li>
                     )}
                 </ul>
                 {/** ### 모바일 대응 */}
@@ -49,19 +65,20 @@ const TopNavbar = () => {
                     </li>
                 </ul>
                 <ul className='pr-10 pl-10 text-lg'>
-                    <li className='pb-1.5'><Link href='/payment'>식권 구입</Link></li>
+                    <li className='pb-1.5'><Link href='/payment'>식권사용</Link></li>
+                    <li className='pb-1.5'><Link href='/payment'>식권구입</Link></li>
+                    <li className='pb-1.5'><Link href='/payment'>결제내역</Link></li>
                     {session?.user?.name === 'root' && (
-                        <li className='pb-1.5'><Link href='/admin'>어드민</Link></li>
+                        <li className='pb-1.5'><Link href='/admin'>관리자페이지</Link></li>
                     )}
                     {/** TODO: Feature 정해진 후 배열에 담아 map 반복 */}
                     {!session ? (
-                        <>
-                            <li><Link href='/login'>로그인</Link></li>
-                            <li><Link href='/api/auth/signin/github'>깃허브 로그인</Link></li>
-                        </>
+                        <li>
+                            <ColorButton text={'로그인'} onClick={() => signIn()}/>
+                        </li>
                     ) : (
                         <li className='xl: pr-10'>
-                            <Link href='/api/auth/signout/github'>로그아웃</Link>
+                            <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
                         </li>
                     )}
                 </ul>

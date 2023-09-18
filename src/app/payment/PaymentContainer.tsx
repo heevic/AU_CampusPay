@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react';
-import PreviousButton from "@/components/PreviousButton";
+import PreviousButton from "@/components/ui/PreviousButton";
 import PaymentBtn from "@/app/payment/PaymentBtn";
 import CookItem from "@/app/payment/CookItem";
 
