@@ -34,12 +34,20 @@ const TopNavbar = () => {
                     {session?.user?.role === 'admin' &&
                         <li><Link href='/admin'>관리자 페이지</Link></li>
                     }
-                    <li><Link href='/confirmation/username'>식권사용</Link></li>
-                    <li><Link href='/payment/username'>식권구입</Link></li>
-                    <li><Link href='/history/username'>결제내역</Link></li>
+                    <li>
+                        <Link href={`/confirmation/${session?.user.name}`}>식권사용</Link>
+                    </li>
+                    <li>
+                        <Link href={`/payment/${session?.user.name}`}>식권구입</Link>
+                    </li>
+                    <li>
+                        <Link href={`/history/${session?.user.name}`}>결제내역</Link>
+                    </li>
                     {!session ? (
                         <>
-                            <li><Link href='/register'>회원가입</Link></li>
+                            <li>
+                                <Link href='/register'>회원가입</Link>
+                            </li>
                             <li className='xl: pr-10'>
                                 <ColorButton text={'로그인'} onClick={() => signIn()}/>
                             </li>
@@ -65,11 +73,19 @@ const TopNavbar = () => {
                     </li>
                 </ul>
                 <ul className='pr-10 pl-10 text-lg'>
-                    <li className='pb-1.5'><Link href='/payment'>식권사용</Link></li>
-                    <li className='pb-1.5'><Link href='/payment'>식권구입</Link></li>
-                    <li className='pb-1.5'><Link href='/payment'>결제내역</Link></li>
+                    <li className='pb-1.5'>
+                        <Link href={`/confirmation/${session?.user.name}`}>식권사용</Link>
+                    </li>
+                    <li className='pb-1.5'>
+                        <Link href={`/payment/${session?.user.name}`}>식권구입</Link>
+                    </li>
+                    <li className='pb-1.5'>
+                        <Link href={`/history/${session?.user.name}`}>결제내역</Link>
+                    </li>
                     {session?.user?.name === 'root' && (
-                        <li className='pb-1.5'><Link href='/admin'>관리자페이지</Link></li>
+                        <li className='pb-1.5'>
+                            <Link href='/admin'>관리자페이지</Link>
+                        </li>
                     )}
                     {/** TODO: Feature 정해진 후 배열에 담아 map 반복 */}
                     {!session ? (
