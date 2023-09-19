@@ -17,7 +17,6 @@ const PaymentContainer = () => {
 
     return (
         <>
-            {/*<PaymentTapMenu/>*/}
             <div className="m-5 mb-0 col-span-2 bg-white">
                 <div className="flex border-b mb-4">
                     <button

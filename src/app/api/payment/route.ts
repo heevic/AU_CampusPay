@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import {connectDB} from "@/app/api/db/mongoDb";
 
 export async function POST(request: NextRequest) {
     /** ### JSON 요청 본문에서 imp_uid와 merchant_uid를 추출. */
@@ -44,6 +45,12 @@ export async function POST(request: NextRequest) {
         const paymentData = paymentDataResult.response;
         console.log('paymentData : ', paymentData);
 
+        /** ### 결제 데이터 데이터 베이스에 저장 */
+        const db = (await connectDB).db(process.env.MONGODB_NAME as string);
+        await db.collection(process.env.MONGODB_PAYMENT as string).insertOne({
+            paymentData
+        })
+
         /** ### 응답 반환 : 결제 데이터 */
         return NextResponse.json({ paymentData });
     } catch (error) {
@@ -54,4 +61,3 @@ export async function POST(request: NextRequest) {
         }
     }
 }
-
