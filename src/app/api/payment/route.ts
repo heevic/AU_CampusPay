@@ -48,7 +48,14 @@ export async function POST(request: NextRequest) {
         /** ### 결제 데이터 데이터 베이스에 저장 */
         const db = (await connectDB).db(process.env.MONGODB_NAME as string);
         await db.collection(process.env.MONGODB_PAYMENT as string).insertOne({
-            paymentData
+            amount: paymentData.amount,
+            name: paymentData.buyer_name,
+            email: paymentData.buyer_email,
+            phone: paymentData.buyer_tel,
+            menu: paymentData.name,
+            imp: paymentData.imp_uid,
+            merchant: paymentData.merchant_uid,
+            pg: paymentData.pg_provider,
         })
 
         /** ### 응답 반환 : 결제 데이터 */

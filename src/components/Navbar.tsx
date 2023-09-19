@@ -4,12 +4,11 @@ import Link from "next/link";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {AiOutlineClose} from "react-icons/ai";
 import {signIn, signOut, useSession} from "next-auth/react";
-import {Session} from "@/types/auth";
 import ColorButton from "@/components/ui/ColorButton";
 import Image from 'next/image'
 
 const TopNavbar = () => {
-    const {data: session} = useSession() as { data: Session | null };
+    const {data: session} = useSession();
     const [isClicked, setIsClicked] = useState(false);
     const handleNavClick = () => {
         setIsClicked(!isClicked)

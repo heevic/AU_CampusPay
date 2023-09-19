@@ -7,11 +7,10 @@ import {BsQrCode} from "react-icons/bs";
 import {MdPayment} from "react-icons/md";
 import {AiOutlineHistory} from "react-icons/ai";
 import {GrUserAdmin} from "react-icons/gr";
-import {Session} from "@/types/auth";
 import TopNavbar from "@/components/Navbar";
 
 export default async function Home() {
-    const session: Session | null = await getServerSession(options)
+    const session = await getServerSession(options)
     const res = await fetch(`${process.env.SITE_URL}/api/notice`);
     const data = await res.json();
     const factText = data.data[0];
