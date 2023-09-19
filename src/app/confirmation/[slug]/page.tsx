@@ -1,5 +1,5 @@
 import React from 'react';
-import QrCode from "@/app/confirmation/QrCode";
+import QrCode from "@/components/QrCode";
 
 type Props = {
     params: {

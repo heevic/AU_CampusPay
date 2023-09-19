@@ -1,8 +1,8 @@
 'use client'
 import React, {useState} from 'react';
 import PreviousButton from "@/components/ui/PreviousButton";
-import PaymentBtn from "@/app/payment/PaymentBtn";
-import CookItem from "@/app/payment/CookItem";
+import PaymentBtn from "@/components/ui/PaymentBtn";
+import CookItem from "@/components/CookItem";
 
 const PaymentContainer = () => {
     const [activeTab, setActiveTab] = useState('교직원');

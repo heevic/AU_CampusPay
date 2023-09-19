@@ -1,5 +1,5 @@
 import React from 'react';
-import HistoryItem from "@/app/history/HistoryItem";
+import HistoryItem from "@/components/HistoryItem";
 import PreviousButton from "@/components/ui/PreviousButton";
 
 type Props = {
