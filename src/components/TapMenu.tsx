@@ -5,8 +5,8 @@ import TabMenuPaymentBtn from '@/components/ui/TabMenuPaymentBtn'
 const TapMenu = () => {
     const [activeTab, setActiveTab] = useState('교직원');
     /* TODO - 임시 데이터 추가시 타입 재정의 예정 */
-    const [text, setText] = useState<any[]>([]);
-    const [todayDate, setTodayDate] = useState<string>('데이터 로딩중...');
+    const [todayDate, setTodayDate] = useState<string>('식단 데이터 로딩중...');
+    const [menus, setMenus] = useState<any[]>([]);
 
     useEffect(() => {
         fetch('/api/cooks')
@@ -17,39 +17,51 @@ const TapMenu = () => {
                 const m = today.getMonth() + 1;
                 const d = today.getDate();
 
-                const todayMenus = data.data.filter((menu: any) => {
-                    return menu.date.y === y && menu.date.m === m && menu.date.d === d && menu.role === activeTab;
+                const todayMenus = data.data.filter((todayMenu: any) => {
+                    return todayMenu.date.y === y && todayMenu.date.m === m && todayMenu.date.d === d && todayMenu.role === activeTab;
                 });
-
-                setText(todayMenus.length > 0 ? todayMenus.map((menu: any) => menu.menu.join(", ")) : ['오늘의 메뉴가 없습니다.']);
+                setMenus(todayMenus.map((todayMenu: any) => [todayMenu]));
                 setTodayDate(`${m}월 ${d}일`);
             });
     }, [activeTab]);
 
     const renderMenus = () => {
-        return text.map((menuText, index) => {
-            const items = String(menuText).split(","); // 아이템들을 배열로 분할
-            return (
-                <div className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded" key={index}>
-                    <div className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">{todayDate}</div>
-                    <div className='min-h-full text-center'>
-                        {items.map((item, itemIndex) => (
-                            <div className="p-0.5 min text-center font-medium text-[18px]" key={itemIndex}>
-                                {item}
-                            </div>
-                        ))}
-                    </div>
-                    {items[0] !== '오늘의 메뉴가 없습니다.' && (
-                        <div className='flex -translate-y-20'>
-                            <TabMenuPaymentBtn props={{ name: items[0], amount: menuText.price }} />
-                        </div>
-                    )}
-
-
+        return menus.length === 0 ? (
+            <div className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded">
+                <div className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">
+                    {todayDate}
                 </div>
-            );
-        });
+                <div className='min-h-full text-center'>
+                    <div className="p-0.5 min text-center font-medium text-[18px]">
+                        오늘의 메뉴가 없습니다.
+                    </div>
+                </div>
+            </div>
+        ) : (
+            menus.map((menuItems, index) => {
+                const todayMenu = menuItems[0];
+                const items = todayMenu.menu;
+                const price = todayMenu.price;
+
+                return (
+                    <div className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded" key={index}>
+                        <div className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">{todayDate}</div>
+                        <div className='min-h-full text-center'>
+                            {items.map((item: any[], itemIndex: any) => (
+                                <div className="p-0.5 min text-center font-medium text-[18px]" key={itemIndex}>
+                                    {item}
+                                </div>
+                            ))}
+                        </div>
+                        <div className='flex -translate-y-20'>
+                            <TabMenuPaymentBtn props={{ name: items[0], amount: price }} />
+                        </div>
+                    </div>
+                );
+            })
+        );
     };
+
 
     return (
         <div className="m-5 mb-0 col-span-2 bg-white">
