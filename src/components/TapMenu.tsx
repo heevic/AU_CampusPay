@@ -35,6 +35,7 @@ const TapMenu = ({user}: Props) => {
                 setTodayDate(`${m}월 ${d}일`);
             });
     }, [activeTab] /* activeTab 값의 변경마다 useEffect 실행 */);
+    console.log(menus)
 
     return (
         <div className="m-5 mb-0 col-span-2 bg-white">
@@ -56,10 +57,8 @@ const TapMenu = ({user}: Props) => {
                 </button>
             </div>
             <div className="grid grid-cols-3 gap-4 m-auto mt-10">
-                
-                {
-                /* menus에 해당하는 메뉴가 없을 경우 */
-                menus.length === 0 ? (
+                {/* menus에 해당하는 메뉴가 없을 경우 */}
+                {menus.length === 0 ? (
                     <div className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded">
                         <div className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">
                             {todayDate}
@@ -90,7 +89,7 @@ const TapMenu = ({user}: Props) => {
                                     ))}
                                 </div>
                                 <div className='flex -translate-y-20'>
-                                    <Link href={`/payment/${user.user.email}`}>
+                                    <Link href={`/payment/${user && user.user ? user.user.email : '/login'}`}>
                                         결제
                                     </Link>
                                 </div>

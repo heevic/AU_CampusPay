@@ -52,6 +52,51 @@ const FormComponent = () => {
                         onChange={handleInput}
                     />
                 </div>
+                <div>
+                    <label htmlFor="password" className="sr-only">
+                        이름
+                    </label>
+                    <input
+                        id="username"
+                        name="username"
+                        type="text"
+                        autoComplete="current-password"
+                        required
+                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="이름"
+                        onChange={handleInput}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password" className="sr-only">
+                        학번
+                    </label>
+                    <input
+                        id="studentnumber"
+                        name="studentnumber"
+                        type="text"
+                        autoComplete="current-password"
+                        required
+                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="학번"
+                        onChange={handleInput}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="phone" className="sr-only">
+                        전화번호
+                    </label>
+                    <input
+                        id="phone"
+                        name="phone"
+                        type="text"
+                        autoComplete="current-password"
+                        required
+                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="휴대폰 번호"
+                        onChange={handleInput}
+                    />
+                </div>
             </div>
 
             <div>

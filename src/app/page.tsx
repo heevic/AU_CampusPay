@@ -5,7 +5,7 @@ import {getServerSession} from "next-auth";
 import TapMenu from "@/components/TapMenu";
 import {BsQrCode} from "react-icons/bs";
 import {MdPayment} from "react-icons/md";
-import {AiOutlineHistory} from "react-icons/ai";
+import {AiOutlineHistory, AiOutlinePlus} from "react-icons/ai";
 import {GrUserAdmin} from "react-icons/gr";
 import TopNavbar from "@/components/Navbar";
 
@@ -18,11 +18,12 @@ export default async function Home() {
     return (
         <>
             <TopNavbar/>
-            <main className='h-screen bg-gray-200'>
+            <main className='min-h-screen max-h-full bg-gray-200'>
                 <div className='grid grid-cols-2 gap-4'>
                     {/** ### TapMenu Component */}
                     {/* Todo : user 타입 정의 필요 */}
                     <TapMenu user={session}/>
+
                     {/** ### User Profile */}
                     <div className='ml-5 p-5 bg-white'>
                         {session ? (
@@ -45,6 +46,7 @@ export default async function Home() {
                             </div>
                         )}
                     </div>
+
                     {/** ### Link */}
                     <div className='mr-5 p-5 bg-white flex flex-col gap-4'>
                         <Link href={`/confirmation/${session?.user?.email}`}
@@ -71,9 +73,13 @@ export default async function Home() {
                             </Link>
                         }
                     </div>
+
                     {/** ### AnnounceManet */}
-                    <div className='ml-5 mr-5 p-5 bg-white col-span-2 rounded-lg shadow-lg'>
-                        <h3 className='text-xl font-bold mb-4'>공지사항</h3>
+                    <div className='mx-5 mb-5  p-5 bg-white col-span-2 rounded-lg shadow-lg'>
+                        <div className='flex items-center justify-between px-4 pb-4'>
+                            <h3 className='text-xl font-bold'>공지사항</h3>
+                            <Link href='/'><AiOutlinePlus/></Link>
+                        </div>
                         <div className='divide-y divide-gray-300'>
                             {[...Array(5)].map((_, idx) => (
                                 <div key={idx} className={`flex justify-between py-3 ${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
