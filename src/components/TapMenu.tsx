@@ -1,8 +1,15 @@
 'use client'
+import { User } from '@/model/user';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import TabMenuPaymentBtn from '@/components/ui/TabMenuPaymentBtn'
 
-const TapMenu = () => {
+type Props = {
+    user: {
+        user: User;
+    }
+}
+
+const TapMenu = ({user}: Props) => {
     const [activeTab, setActiveTab] = useState('교직원');
     /* TODO - 임시 데이터 추가시 타입 재정의 예정 */
     const [todayDate, setTodayDate] = useState<string>('식단 데이터 로딩중...');
@@ -74,7 +81,7 @@ const TapMenu = () => {
                         return (
                             <div className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded" key={index}>
                                 <div className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">{todayDate}</div>
-                                <div className='min-h-full text-center'>
+                                <div className='mx-auto min-h-full text-center'>
                                     {/* items 배열의 각 요소 string으로 반환 */}
                                     {items.map((item: string, itemIndex: number) => (
                                         <div className="p-0.5 min text-center font-medium text-[18px]" key={itemIndex}>
@@ -83,7 +90,9 @@ const TapMenu = () => {
                                     ))}
                                 </div>
                                 <div className='flex -translate-y-20'>
-                                    <TabMenuPaymentBtn props={{ name: items[0], amount: price }} /> {/* TabMenuPaymentBtn에 첫 번째 음식 이름: String, 메뉴 가격: number props로 전달하기 */}
+                                    <Link href={`/payment/${user.user.email}`}>
+                                        결제
+                                    </Link>
                                 </div>
                             </div>
                         );

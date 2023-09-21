@@ -10,18 +10,19 @@ import {GrUserAdmin} from "react-icons/gr";
 import TopNavbar from "@/components/Navbar";
 
 export default async function Home() {
-    const session = await getServerSession(options)
+    const session: any = await getServerSession(options)
     const res = await fetch(`${process.env.SITE_URL}/api/notice`);
     const data = await res.json();
     const factText = data.data[0];
-
+    
     return (
         <>
             <TopNavbar/>
             <main className='h-screen bg-gray-200'>
                 <div className='grid grid-cols-2 gap-4'>
                     {/** ### TapMenu Component */}
-                    <TapMenu/>
+                    {/* Todo : user 타입 정의 필요 */}
+                    <TapMenu user={session}/>
                     {/** ### User Profile */}
                     <div className='ml-5 p-5 bg-white'>
                         {session ? (
