@@ -4,12 +4,12 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 type Props = {
-    user: {
+    session: {
         user: User;
     }
 }
 
-const TapMenu = ({user}: Props) => {
+const TabMenu = ({session}: Props) => {
     const [activeTab, setActiveTab] = useState('교직원');
     /* TODO - 임시 데이터 추가시 타입 재정의 예정 */
     const [todayDate, setTodayDate] = useState<string>('식단 데이터 로딩중...');
@@ -38,7 +38,7 @@ const TapMenu = ({user}: Props) => {
     console.log(menus)
 
     return (
-        <div className="m-5 mb-0 col-span-2 bg-white">
+        <div className="m-5 mr-0 mb-0 col-span-2 bg-white">
             <div className="flex border-b mb-4">
                 <button
                     onClick={() => setActiveTab('교직원')}
@@ -89,7 +89,7 @@ const TapMenu = ({user}: Props) => {
                                     ))}
                                 </div>
                                 <div className='flex -translate-y-20'>
-                                    <Link href={`/payment/${user && user.user ? user.user.email : '/login'}`}>
+                                    <Link href={`/payment/${session && session.user ? session.user.email : '/login'}`}>
                                         결제
                                     </Link>
                                 </div>
@@ -102,4 +102,4 @@ const TapMenu = ({user}: Props) => {
     );
 };
 
-export default TapMenu;
+export default TabMenu;

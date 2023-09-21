@@ -33,15 +33,6 @@ const TopNavbar = () => {
                     {session?.user?.role === 'admin' &&
                         <li><Link href='/admin'>관리자 페이지</Link></li>
                     }
-                    <li>
-                        <Link href={`/confirmation/${session?.user.name}`}>식권사용</Link>
-                    </li>
-                    <li>
-                        <Link href={`/payment/${session?.user.name}`}>식권구입</Link>
-                    </li>
-                    <li>
-                        <Link href={`/history/${session?.user.name}`}>결제내역</Link>
-                    </li>
                     {!session ? (
                         <>
                             <li>
@@ -52,9 +43,20 @@ const TopNavbar = () => {
                             </li>
                         </>
                     ) : (
-                        <li className='xl: pr-10'>
-                            <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
-                        </li>
+                        <>
+                            <li>
+                                <Link href={`/confirmation/${session?.user.name}`}>식권사용</Link>
+                            </li>
+                            <li>
+                                <Link href={`/payment/${session?.user.name}`}>식권구입</Link>
+                            </li>
+                            <li>
+                                <Link href={`/history/${session?.user.name}`}>결제내역</Link>
+                            </li>
+                            <li className='xl: pr-10'>
+                                <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
+                            </li>
+                        </>
                     )}
                 </ul>
                 {/** ### 모바일 대응 */}
