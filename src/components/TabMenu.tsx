@@ -24,6 +24,7 @@ const TabMenu = ({session}: Props) => {
             <div className="flex border-b mb-4">
                 {tabList.map((item) => (
                     <button
+                        key={item.label}
                         onClick={() => setActiveTab(item.label)}
                         className={`py-2 px-4 w-full text-center ${activeTab === `${item.label}` ? 'border-b-2 border-blue-500 font-semibold' : ''}`}
                     >
