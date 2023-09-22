@@ -26,9 +26,6 @@ const PaymentContainer = () => {
         setSelectedItem({name, amount});
     };
 
-    console.log('activeTab : ', activeTab);
-    console.log('selectedItem : ', selectedItem);
-
     return (
         <>
             <div className="m-5 mb-0 col-span-2 bg-white">

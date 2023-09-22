@@ -15,8 +15,8 @@ export async function POST(request: NextRequest) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                imp_key: process.env.IAMPORT_API_KEY, // 환경 변수에서 IAMPORT API 키를 가져옵니다.
-                imp_secret: process.env.IAMPORT_API_SECRET // 환경 변수에서 IAMPORT API 비밀번호를 가져옵니다.
+                imp_key: process.env.IAMPORT_API_KEY,
+                imp_secret: process.env.IAMPORT_API_SECRET
             })
         });
 
