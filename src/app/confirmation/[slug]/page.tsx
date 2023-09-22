@@ -1,5 +1,5 @@
 import React from 'react';
-import QrCode from "@/components/QrCode";
+import QrCode from "@/components/ui/QrCode";
 
 type Props = {
     params: {
@@ -19,10 +19,12 @@ const ConfirmationPage = async ({params}: Props) => {
                     <QrCode />
                 </div>
                 <p className="text-center text-gray-700 font-medium">
-                    {params.slug}
-                    <br />
+                    <span className='font-bold'>
+                        {params.slug}
+                    </span>
+                    <br/>
                     중식
-                    <br />
+                    <br/>
                     미사용
                 </p>
                 <button className="mt-6 px-8 py-2 bg-red-500 text-white rounded-full font-medium tracking-wide hover:bg-red-600 transition ease-in-out duration-300">

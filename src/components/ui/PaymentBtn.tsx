@@ -40,9 +40,9 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             merchant_uid: `mid_${new Date().getTime()}`,
             name: props.name,
             amount: props.amount,
-            buyer_name: 'props.username',
-            buyer_tel: 'props.phone',
-            buyer_email: 'props.email',
+            buyer_name: session?.user.username,
+            buyer_tel: session?.user.phone,
+            buyer_email: session?.user.email,
             m_redirect_url: `/`,
             //notice_url: `${process.env.SITE_URL}/api/payments/webhook`,
         };

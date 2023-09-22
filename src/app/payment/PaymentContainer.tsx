@@ -4,12 +4,26 @@ import PreviousButton from "@/components/ui/PreviousButton";
 import PaymentBtn from "@/components/ui/PaymentBtn";
 import CookItem from "@/components/CookItem";
 
+type activeTab = '교직원' | '학생';
+
+const menuData: Record<activeTab, {label: string; price:number;}[]> = {
+    '교직원': [
+        {label: '교직원 중식', price: 5000}
+    ],
+    '학생': [
+        {label: '학생 조식', price: 1000},
+        {label: '학생 중식1', price: 4000},
+        {label: '학생 중식2', price: 4000},
+        {label: '학생 석식', price: 4000}
+    ]
+};
+
 const PaymentContainer = () => {
-    const [activeTab, setActiveTab] = useState('교직원');
-    const [selectedItem, setSelectedItem] = useState({ name: '', amount: 0 });
+    const [activeTab, setActiveTab] = useState<activeTab>('교직원');
+    const [selectedItem, setSelectedItem] = useState({name: '', amount: 0});
 
     const handleItemClick = (name: string, amount: number) => {
-        setSelectedItem({ name, amount });
+        setSelectedItem({name, amount});
     };
 
     console.log('activeTab : ', activeTab);
@@ -31,42 +45,19 @@ const PaymentContainer = () => {
                     </button>
                 </div>
                 <div>
-                    {activeTab === '교직원' &&
-                        <div className="grid grid-cols-1 gap-4 mt-4">
+                    <div className="grid grid-cols-1 gap-4 mt-4">
+                        {menuData[activeTab]?.map((item) => (
                             <CookItem
-                                props={'교직원 조식 5000'}
-                                onClick={()=> handleItemClick('교직원 조식', 5000)}
+                                key={item.label}
+                                props={`${item.label} ${item.price}`}
+                                onClick={() => handleItemClick(item.label, item.price)}
                             />
-                            <CookItem
-                                props={`교직원 중식 5000`}
-                                onClick={()=> handleItemClick('교직원 중식', 5000)}
-                            />
-                        </div>
-                    }
-                    {activeTab === '학생' &&
-                        <div className="grid grid-cols-1 gap-4 mt-4">
-                            <CookItem
-                                props={'학생 조식 1000'}
-                                onClick={() => handleItemClick('학생 조식', 1000)}
-                            />
-                            <CookItem
-                                props={'학생 중식1 4000'}
-                                onClick={() => handleItemClick('학생 중식1', 4000)}
-                            />
-                            <CookItem
-                                props={'학생 중식2 4000'}
-                                onClick={() => handleItemClick('학생 중식2', 4000)}
-                            />
-                            <CookItem
-                                props={'학생 석식 4000'}
-                                onClick={() => handleItemClick('학생 석식', 4000)}
-                            />
-                        </div>
-                    }
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className="flex justify-around mt-6">
-                <PreviousButton props={'취소'} />
+                <PreviousButton props={'취소'}/>
                 <PaymentBtn props={selectedItem}/>
             </div>
         </>

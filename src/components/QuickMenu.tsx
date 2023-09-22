@@ -15,25 +15,24 @@ type Props = {
 
 const QuickMenu = ({session}: Props) => {
     const isLoggedOut = !session;
-
     const links = [
         {
-            href: `/confirmation/${session?.user?.email}`,
+            href: `/confirmation/${session?.user?.username}`,
             icon: <RiceMenuIcon />,
             label: "식단표"
         },
         {
-            href: `/confirmation/${session?.user?.email}`,
+            href: `/confirmation/${session?.user?.username}`,
             icon: <UseTicketIcon />,
             label: "식권 사용"
         },
         {
-            href: `/payment/${session?.user?.email}`,
+            href: `/payment/${session?.user?.username}`,
             icon: <GetTicketIcon />,
             label: "식권 구입"
         },
         {
-            href: `/history/${session?.user?.email}`,
+            href: `/history/${session?.user?.username}`,
             icon: <PaymentHistoryIcon />,
             label: "결제 내역"
         }
@@ -63,7 +62,7 @@ const QuickMenu = ({session}: Props) => {
                     <Link
                         href={`/login`}
                         className={`bg-white font-bold ${getLoginStateQuickMenuStyle()}`}>
-                        로그인
+                        로그인 후 이용 가능합니다.
                     </Link>
                 </div>
             )}
