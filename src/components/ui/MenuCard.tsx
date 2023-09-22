@@ -39,40 +39,41 @@ const MenuCard = ({activeTab, session}: Props) => {
     }, [activeTab]);
 
     return (
-        <div className="grid grid-cols-3 gap-4 m-auto mt-10">
-            {menus.map((items, index) => (
-                <div
-                    className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded"
-                    key={index}
-                >
-                    <div
-                        className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">
+        <>
+            {menus.length === 0 ? (
+                <div className="flex flex-col justify-center min-h-[200px] rounded">
+                    <p className='w-20 mx-auto mb-2 border-2 font-semibold text-center bg-stone-200 border-black-500 rounded-lg'>
                         {todayDate}
-                    </div>
-                    <div className='mx-auto min-h-full text-center'>
-                        {menus.length === 0 ? (
-                            <p className="p-0.5 min text-center font-medium text-[18px]">
-                                오늘의 메뉴가 없습니다.
-                            </p>
-                        ) : (
-                            items.menu.map((item: string, index: number) => (
-                                <p
-                                    className="p-0.5 min text-center font-medium text-[18px]"
-                                    key={index}
-                                >
-                                    {item}
-                                </p>
-                            ))
-                        )}
-                    </div>
-                    <div className='-translate-y-20'>
-                        <Link href={`/payment/${session && session.user ? session.user.email : '/login'}`}>
-                            결제
-                        </Link>
-                    </div>
+                    </p>
+                    <p className="mx-auto min-h-full text-center p-0.5 min font-medium text-[18px]">
+                        오늘의 메뉴가 없습니다.
+                    </p>
                 </div>
-            ))}
-        </div>
+            ) : (
+                menus.map((items, index) => (
+                    <div className="grid grid-cols-2 gap-4 m-auto mt-10">
+                        <div
+                            className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded"
+                            key={index}
+                        >
+                            <div
+                                className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">
+                                {todayDate}
+                            </div>
+                            <div className='mx-auto min-h-full text-center'>
+                                {items.menu.map((item: string, index: number) => (
+                                    <p
+                                        className="p-0.5 min text-center font-medium text-[18px]"
+                                        key={index}
+                                    >
+                                        {item}
+                                    </p>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )))}
+        </>
     );
 };
 
