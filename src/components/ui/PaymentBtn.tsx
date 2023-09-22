@@ -67,13 +67,13 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             const data = await res.json();
             console.log("data : ", data);
 
-            /** ### 결제 성공시 리다이렉트 경로 */
+            /** 결제 성공시 리다이렉트 경로 */
             alert('결제 성공')
             //router.replace(`${process.env.SITE_URL}/confirmation/${session?.user?.name}`);
             router.replace(`/ticket/${session?.user?.username}`);
         } else {
             alert(`결제 실패: ${error_msg}`);
-            /** ### 결제 실패시 리다이렉트 경로 */
+            /** 결제 실패시 리다이렉트 경로 */
             router.replace(`/payment/${session?.user?.username}`);
         }
     }

@@ -56,6 +56,7 @@ export async function POST(request: NextRequest) {
             imp: paymentData.imp_uid,
             merchant: paymentData.merchant_uid,
             pg: paymentData.pg_provider,
+            state: '미사용',
         })
 
         /** ### 응답 반환 : 결제 데이터 */
