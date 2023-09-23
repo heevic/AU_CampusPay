@@ -28,9 +28,9 @@ export default function NotFound() {
                     />
                 </div>
                 <div className='px-10'>
-                    <div className="mb-4 xmd:text-[40px] sd:text-[32px] font-semibold text-blue-custom">페이지를 찾을 수 없습니다!</div>
-                    <div className="mb-4 xmd:text-[17px] sd:text-[13px] text-blue-custom">존재하지 않는 주소를 입력하셨거나, 요청하신 페이지의 주소가 변경, 삭제되어 찾을 수 없습니다.</div>
-                    <div className="xmd:text-[17px] sd:text-[13px] text-blue-custom">페이지의 주소가 올바른지 다시 한번 확인해 주시길 부탁드립니다.</div>
+                    <p className="mb-4 xmd:text-[40px] sd:text-[32px] font-semibold text-blue-custom">페이지를 찾을 수 없습니다!</p>
+                    <p className="mb-4 xmd:text-[17px] sd:text-[13px] text-blue-custom">존재하지 않는 주소를 입력하셨거나, 요청하신 페이지의 주소가 변경, 삭제되어 찾을 수 없습니다.</p>
+                    <p className="xmd:text-[17px] sd:text-[13px] text-blue-custom">페이지의 주소가 올바른지 다시 한번 확인해 주시길 부탁드립니다.</p>
                 </div>
                 <div className="mt-10">
                     <PreviousButton props="이 전 페이지로 돌아가기" className="bg-blue-custom w-[400px] h-[75px] text-[25px] text-white font-semibold rounded" />
