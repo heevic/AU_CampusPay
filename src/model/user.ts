@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 
 export type User = {
-  id: ObjectId;
+  _id: ObjectId;
   name: string;
   password: string;
   email: string;

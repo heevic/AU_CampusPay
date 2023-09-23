@@ -22,7 +22,7 @@ const QuickMenu = ({session}: Props) => {
             label: "식단표"
         },
         {
-            href: `/confirmation/${session?.user?.username}`,
+            href: `/ticket/${session?.user?.username}`,
             icon: <UseTicketIcon />,
             label: "식권 사용"
         },

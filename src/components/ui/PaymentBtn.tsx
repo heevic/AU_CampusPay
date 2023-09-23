@@ -46,7 +46,6 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             m_redirect_url: `/`,
             //notice_url: `${process.env.SITE_URL}/api/payments/webhook`,
         };
-        console.log(`RequestPayParams : ${data.name}`)
         /** ### 4. 결제 창 호출하기 */
         IMP.request_pay(data, callback);
     };
