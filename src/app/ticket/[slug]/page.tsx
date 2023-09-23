@@ -24,6 +24,7 @@ const TicketPage = async ({params}: Props) => {
                     <div key={item._id}>
                         <Link href={`/confirmation/${item._id}`}>
                             <p>{item.menu}</p>
+                            <p>{item.name}</p>
                         </Link>
                     </div>
                 ))}
