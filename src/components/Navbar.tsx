@@ -19,7 +19,7 @@ const TopNavbar = () => {
             {/** ### 네비게이션 메뉴 */}
             {/** TODO : 관리자 페이지 session...role === admin */}
             <nav className='h-14 flex justify-between items-center bg-blue-custom text-white'>
-                <div className='pl-10'>
+                <div className='pl-5'>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
                             src='/logo_Kor.svg'
@@ -68,12 +68,12 @@ const TopNavbar = () => {
             <div
                 className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
                 <ul className='h-14 flex justify-between items-center'>
-                    <li className='pl-10'><Link href='/'>메인</Link></li>
+                    <li className='pl-5'><Link href='/'>메인</Link></li>
                     <li className='pr-10'>
                         <button onClick={handleNavClick}><AiOutlineClose/></button>
                     </li>
                 </ul>
-                <ul className='pr-10 pl-10 text-lg'>
+                <ul className='pr-10 pl-5 text-lg'>
                     <li className='pb-1.5'>
                         <Link href={`/confirmation/${session?.user.name}`}>식권사용</Link>
                     </li>
